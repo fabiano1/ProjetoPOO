@@ -10,6 +10,13 @@ public class Endereco {
 	
 	
 	
+	/**
+	 * 
+	 */
+	public Endereco() {
+		super();
+	}
+	
 	public Endereco(String estado, String cidade, String bairro, String cep, String rua, int numero) {
 		super();
 		this.estado = estado;
@@ -19,6 +26,93 @@ public class Endereco {
 		this.rua = rua;
 		this.numero = numero;
 	}
+	
+	
+	
+	/**
+	 * @return the estado
+	 */
+	public String getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	/**
+	 * @return the cidade
+	 */
+	public String getCidade() {
+		return Cidade;
+	}
+
+	/**
+	 * @param cidade the cidade to set
+	 */
+	public void setCidade(String cidade) {
+		Cidade = cidade;
+	}
+
+	/**
+	 * @return the bairro
+	 */
+	public String getBairro() {
+		return Bairro;
+	}
+
+	/**
+	 * @param bairro the bairro to set
+	 */
+	public void setBairro(String bairro) {
+		Bairro = bairro;
+	}
+
+	/**
+	 * @return the cep
+	 */
+	public String getCep() {
+		return cep;
+	}
+
+	/**
+	 * @param cep the cep to set
+	 */
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	/**
+	 * @return the rua
+	 */
+	public String getRua() {
+		return rua;
+	}
+
+	/**
+	 * @param rua the rua to set
+	 */
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	/**
+	 * @return the numero
+	 */
+	public int getNumero() {
+		return numero;
+	}
+
+	/**
+	 * @param numero the numero to set
+	 */
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
