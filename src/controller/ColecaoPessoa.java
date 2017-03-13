@@ -23,11 +23,12 @@ public class ColecaoPessoa implements Serializable{
 		this.pessoas = new ArrayList<Pessoa>();
 	}
 
-	public void addPessoa(Pessoa p){
+	public boolean addPessoa(Pessoa p){
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
 				id.salvarEmArq(pessoas);
+				return true;
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -38,6 +39,7 @@ public class ColecaoPessoa implements Serializable{
 			 * 		Colocar um método para salvar no aquivo passando a caleção como paramentro
 			 */
 		}
+		return false;
 	}
 
 	public ArrayList<Pessoa> listarPessoa(){
