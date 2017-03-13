@@ -98,10 +98,14 @@ public class Controller implements Icontroller, Serializable{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public boolean removerLocacao(int id) {
 		return false;
+	}
+	
+	public Locacao pesquisaLocacao(int id){
+		return cl.pesquisaLocacao(id);
 	}
 
 	@Override

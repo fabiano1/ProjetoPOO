@@ -117,8 +117,7 @@ public class Principal implements Serializable{
 				case 15:
 					System.out.print("digite o id da locacao: ");
 					i = lerInteiro();
-		//			ic.pesquisaLocacao(i);
-					locacao.pesquisaLocacao(i);
+					ic.pesquisaLocacao(i);
 				case 16:
 					System.out.print("digite o id da locacao: ");
 		//			i = LerInteiro();

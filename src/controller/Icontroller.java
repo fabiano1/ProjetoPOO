@@ -22,6 +22,7 @@ public interface Icontroller{
 	public ArrayList<Locacao> listarLocacao(Veiculo v);
 	public Locacao listarLocacao(int id);
 	public boolean removerLocacao(int id);
+	public Locacao pesquisaLocacao(int id);
 	
 	
 
