@@ -13,9 +13,10 @@ public class Controller implements Icontroller, Serializable{
 	private	ColecaoVeiculo cv=new ColecaoVeiculo();
 
 	@Override
-	public void addPessoa(Pessoa p) {
+	public boolean addPessoa(Pessoa p) {
 
 		cp.addPessoa(p);
+		return true;
 	}
 
 	@Override

@@ -11,8 +11,8 @@ import controller.*;
 public class Principal implements Serializable{
 
 	private static Icontroller ic= new Controller();
-	private static ColecaoPessoa pessoa = new ColecaoPessoa();
-	private static ColecaoVeiculo veiculo = new ColecaoVeiculo();
+	/*private static ColecaoPessoa pessoa = new ColecaoPessoa();
+	private static ColecaoVeiculo veiculo = new ColecaoVeiculo();*/
 	private static ColecaoLocacao locacao = new ColecaoLocacao();
 	
 	public static void main(String[] args) throws Exception {
@@ -69,23 +69,23 @@ public class Principal implements Serializable{
 					}
 			
 				case 2:
-					pessoa.listarPessoa();
+					ic.listarPessoa();
 					
 				case 3:
-					pessoa.listarClientes();
+					ic.listarCliente();
 					
 				case 4:
-	//				pessoa.listarFuncionario();
+					ic.listarFuncionario();
 					
 				case 5:
 					System.out.print("digite o documento: ");
 		//			str = LerDocumento();
-		//			pessoa.pesquisarPeloCPF(str);
+		//			ic.pesquisarPessoaPeloCPF(str);
 					
 				case 6:
 					System.out.print("digite o documento: ");
-		//			str = lerDocumento();
-		//			pessoa.removerPessoa(str);
+					str = lerDocumento();
+					ic.removerPessoa(str);
 					
 				/*Veiculo*/
 				case 7:
@@ -94,17 +94,18 @@ public class Principal implements Serializable{
 						System.out.println("Veiculo adicionado com sucesso");
 					}
 				case 8:
-		//			veiculo.listarVeiculo();
+					ic.listarVeiculo();
 				case 9:
-		//			veiculo.listarAutomoveis();
+		//			ic.listarAutmoveis();
 				case 10:
-		//			veiculo.listarMotocicletas();
+		//			ic.listarMOtocicletas();
 				case 11:
-		//			veiculo.pesquisarPelaPlaca(str);
+		//			ic.pesquisaVeiculoPelaPlaca();
 				case 12:
-		//			veiculo.removerVeiculo(str);
+					System.out.print("digite o unmero da Placa: ");
+					str = sc.nextLine();
+					ic.removerVeiculo(str);
 				
-
 				/*Locacao*/
 				case 13:
 		//			if(adicionarLocacao())
@@ -112,15 +113,16 @@ public class Principal implements Serializable{
 						System.out.println("Locacao adicionado com sucesso");
 					}
 				case 14:
-		//			locacao.listarLocaca();
+		//			ic.listarLocacao();
 				case 15:
 					System.out.print("digite o id da locacao: ");
-		//			i = LerInteiro();
+					i = lerInteiro();
+		//			ic.pesquisaLocacao(i);
 					locacao.pesquisaLocacao(i);
 				case 16:
 					System.out.print("digite o id da locacao: ");
 		//			i = LerInteiro();
-					locacao.remoceLocacao(i);
+					ic.removerLocacao(i);
 			}
 		}while(op!=0);
 	}
@@ -171,7 +173,7 @@ public class Principal implements Serializable{
 		
 		client.setEndereco(endereco);
 		
-		if(!pessoa.addPessoa(client)){
+		if(!ic.addPessoa(client)){
 			System.out.println("erro ao cadastrar paciente");
 			return false;
 		}
