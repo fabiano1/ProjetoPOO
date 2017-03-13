@@ -32,6 +32,11 @@ public class Controller implements Icontroller, Serializable{
 
 	}
 
+	public Pessoa pesquisarPessoaPeloCPF(String cpf) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public boolean removerPessoa(String cpf) {
 		

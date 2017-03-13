@@ -69,18 +69,18 @@ public class Principal implements Serializable{
 					}
 			
 				case 2:
-					ic.listarPessoa();
+					System.out.println(ic.listarPessoa().toString());
 					
 				case 3:
-					ic.listarCliente();
+					System.out.println(ic.listarCliente().toString());
 					
 				case 4:
-					ic.listarFuncionario();
+					System.out.println(ic.listarFuncionario().toString());
 					
 				case 5:
 					System.out.print("digite o documento: ");
-		//			str = LerDocumento();
-		//			ic.pesquisarPessoaPeloCPF(str);
+					str = lerDocumento();
+					ic.pesquisarPessoaPeloCPF(str);
 					
 				case 6:
 					System.out.print("digite o documento: ");
@@ -94,13 +94,13 @@ public class Principal implements Serializable{
 						System.out.println("Veiculo adicionado com sucesso");
 					}
 				case 8:
-					ic.listarVeiculo();
+					System.out.println(ic.listarVeiculo().toString());
 				case 9:
-		//			ic.listarAutmoveis();
+		//			System.out.println(ic.listarAutmoveis());
 				case 10:
-		//			ic.listarMOtocicletas();
+		//			System.out.println(ic.listarMOtocicletas());
 				case 11:
-		//			ic.pesquisaVeiculoPelaPlaca();
+		//			System.out.println(ic.pesquisaVeiculoPelaPlaca());
 				case 12:
 					System.out.print("digite o unmero da Placa: ");
 					str = sc.nextLine();

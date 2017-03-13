@@ -8,6 +8,7 @@ public interface Icontroller{
 	public ArrayList<Pessoa> listarPessoa();
 	public ArrayList<Cliente> listarCliente();
 	public ArrayList<Funcionario> listarFuncionario();
+	public Pessoa pesquisarPessoaPeloCPF(String cpf);
 	public boolean removerPessoa(String cpf);
 	
 	public void addVeiculo(Veiculo v);
