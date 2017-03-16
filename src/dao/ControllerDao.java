@@ -20,7 +20,7 @@ public class ControllerDao implements Idao, Serializable{
 	           try {
 	             FileOutputStream saveFile = new FileOutputStream("bd.txt");
 	             ObjectOutputStream stream = new ObjectOutputStream(saveFile);
-	 
+	             
 	              // salva o objeto
 	             stream.writeObject(p);
 	 

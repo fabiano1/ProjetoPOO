@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+
 import controller.*;
 
 
@@ -70,22 +71,27 @@ public class Principal implements Serializable{
 			
 				case 2:
 					System.out.println(ic.listarPessoa().toString());
+					break;
 					
 				case 3:
 					System.out.println(ic.listarCliente().toString());
+					break;
 					
 				case 4:
 					System.out.println(ic.listarFuncionario().toString());
+					break;
 					
 				case 5:
 					System.out.print("digite o documento: ");
 					str = lerDocumento();
 					ic.pesquisarPessoaPeloCPF(str);
+					break;
 					
 				case 6:
 					System.out.print("digite o documento: ");
 					str = lerDocumento();
 					ic.removerPessoa(str);
+					break;
 					
 				/*Veiculo*/
 				case 7:
