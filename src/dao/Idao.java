@@ -7,7 +7,7 @@ import controller.Pessoa;
 public interface Idao {
 	
 	public boolean salvarEmArq(ArrayList<Pessoa> p);
-	public ArrayList<Pessoa> listarPessoas();
+	public ArrayList<Pessoa> carregarPessoas();
 	
 
 }

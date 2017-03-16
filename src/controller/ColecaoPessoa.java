@@ -13,7 +13,7 @@ public class ColecaoPessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Idao id=new ControllerDao();
-	private ArrayList<Pessoa> pessoas=id.listarPessoas();
+	private ArrayList<Pessoa> pessoas=id.carregarPessoas();
 	public ColecaoPessoa(ArrayList<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 	}
@@ -52,7 +52,7 @@ public class ColecaoPessoa implements Serializable{
 	public ArrayList<Cliente> listarClientes(){
 		ArrayList<Cliente> clientes=new ArrayList<Cliente>();
 
-		for (Pessoa pessoa : id.listarPessoas()) {
+		for (Pessoa pessoa : id.carregarPessoas()) {
 
 			if(pessoa instanceof Cliente){
 				clientes.add((Cliente) pessoa);
@@ -85,6 +85,7 @@ public class ColecaoPessoa implements Serializable{
 		return true;
 
 	}
+	
 
 
 

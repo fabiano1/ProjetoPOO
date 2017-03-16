@@ -33,7 +33,7 @@ public class ControllerDao implements Idao, Serializable{
 	}
 
 	@Override
-	public ArrayList<Pessoa> listarPessoas() {
+	public ArrayList<Pessoa> carregarPessoas() {
 					 
 		ArrayList<Pessoa> list = null;
            
