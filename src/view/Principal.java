@@ -47,16 +47,19 @@ public class Principal implements Serializable{
 			System.out.println("\nVeiculo:");
 			System.out.println("7- Adicionar Veiculo");
 			System.out.println("8- Listar Veiculos");
-			System.out.println("9- Listar Automoveis");
-			System.out.println("10- Listar Motocicletas");
-			System.out.println("11- Procurar Veiculo");
-			System.out.println("12- Remover Veiculo");
+			System.out.println("10- Listar Veiculos Disponiveis");
+			System.out.println("11- Listar Automoveis");
+			System.out.println("12- Listar Motocicletas");
+			System.out.println("13- Procurar Veiculo");
+			System.out.println("14- Remover Veiculo");
 			
 			System.out.println("\nLocacao:");
-			System.out.println("13- Adiconar Locacao");
-			System.out.println("14- Listar Locacoes");
-			System.out.println("15- Procurar Locacao");
-			System.out.println("16- Remover Locacao");
+			System.out.println("15- Adiconar Locacao");
+			System.out.println("16- Listar Locacoes");
+			System.out.println("17- Procurar Locacao por ID");
+			System.out.println("18- Procurar Locacao por Pessoa");
+			System.out.println("19- Procurar Locacao por veiculo");
+			System.out.println("20- Remover Locacao");
 		
 			System.out.print("\nOpção: ");
 //			op = LerNumero();
@@ -84,7 +87,7 @@ public class Principal implements Serializable{
 				case 5:
 					System.out.print("digite o documento: ");
 					str = lerDocumento();
-					ic.pesquisarPessoaPeloCPF(str);
+					System.out.println(ic.pesquisarPessoaPeloCPF(str));
 					break;
 					
 				case 6:
@@ -100,33 +103,45 @@ public class Principal implements Serializable{
 						System.out.println("Veiculo adicionado com sucesso");
 					}
 				case 8:
-					System.out.println(ic.listarVeiculo().toString());
+					System.out.println(ic.listarVeiculos().toString());
 				case 9:
-		//			System.out.println(ic.listarAutmoveis());
+					System.out.println(ic.listarVeiculosDisponiveis().toString());
 				case 10:
-		//			System.out.println(ic.listarMOtocicletas());
+					System.out.println(ic.listarAutomoveis().toString());
 				case 11:
-		//			System.out.println(ic.pesquisaVeiculoPelaPlaca());
+					System.out.println(ic.listarMotocicletas().toString());
 				case 12:
-					System.out.print("digite o unmero da Placa: ");
+					System.out.print("digite o numero da Placa: ");
+					str = sc.nextLine();
+					System.out.println(ic.pesquisarVeiculo(str));
+				case 13:
+					System.out.print("digite o numero da Placa: ");
 					str = sc.nextLine();
 					ic.removerVeiculo(str);
 				
 				/*Locacao*/
-				case 13:
+				case 14:
 		//			if(adicionarLocacao())
 					{
 						System.out.println("Locacao adicionado com sucesso");
 					}
-				case 14:
-		//			ic.listarLocacao();
 				case 15:
-					System.out.print("digite o id da locacao: ");
-					i = lerInteiro();
-					ic.pesquisaLocacao(i);
+					System.out.println(ic.listarLocacoes().toString());
 				case 16:
 					System.out.print("digite o id da locacao: ");
-		//			i = LerInteiro();
+					i = lerInteiro();
+					System.out.println(ic.pesquisarLocacao(i));
+				case 17:
+					System.out.print("digite o cpf do cliente: ");
+					str = lerDocumento();
+					System.out.println(ic.pesquisarLocacao(ic.pesquisarPessoaPeloCPF(str)));
+				case 18:
+					System.out.print("digite o numero da  placa do veiculo: ");
+					str = sc.nextLine();
+					System.out.println(ic.pesquisarLocacao(ic.pesquisarVeiculo(str)));
+				case 19:
+					System.out.print("digite o id da locacao: ");
+					i = lerInteiro();
 					ic.removerLocacao(i);
 			}
 		}while(op!=0);
