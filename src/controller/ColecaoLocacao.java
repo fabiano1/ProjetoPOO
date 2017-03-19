@@ -11,29 +11,47 @@ public class ColecaoLocacao {
 		this.locacoes=new ArrayList<Locacao>();
 	}
 
-	public void addLocacao(Locacao locacao){
-		if (!locacao.equals(locacao))
-		locacoes.add(locacao);
-	}
-
-	public void remoceLocacao(int id){
-
-		for (Locacao locacao : locacoes) {
-			if (locacao.getId()==id);
-			locacoes.remove(id);
-
-
+	public boolean addLocacao(Locacao locacao)throws Exception{
+		
+		try{
+			if (!locacao.equals(locacao)){
+				locacoes.add(locacao);
+				return true;
 		}
+		}catch(Exception e){
+			System.err.println("erro ao adicionar locacao");
+		}
+		return false;
+		
+	}
 
+	public boolean removerLocacao(int id)throws Exception{
+
+		try{
+			for (Locacao locacao : locacoes) {
+				if (locacao.getId()==id){
+					locacoes.remove(id);
+					return true;
+				}
+			}
+			
+		}catch(Exception e){
+			System.err.println("erro ao remover locacao");
+		}
+		return false;
 
 	}
-	public Locacao pesquisaLocacao(int id){
-
-		for (Locacao locacao : locacoes) {
-			if (locacao.getId()==id){
-				return locacao;
+	
+	public Locacao pesquisarLocacao(int id)throws Exception{
+		
+		try{
+			for (Locacao locacao : locacoes) {
+				if (locacao.getId()==id){
+					return locacao;
+				}
 			}
-
+		}catch(Exception e){
+			System.err.println("erro ao pesquisar locacao");
 		}
 		return null;
 

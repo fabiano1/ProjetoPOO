@@ -66,7 +66,7 @@ public class ColecaoPessoa implements Serializable{
 			}
 			return clientes;
 		}catch(Exception e){
-			System.err.println("erro ao listar pessoas");
+			System.err.println("erro ao listar clientes");
 		}
 		return null;
 	}
@@ -84,7 +84,7 @@ public class ColecaoPessoa implements Serializable{
 			}
 			return func;
 		}catch(Exception e){
-			System.err.println("erro ao listar pessoas");
+			System.err.println("erro ao listar funcionarios");
 		}
 		return null;
 
@@ -100,7 +100,7 @@ public class ColecaoPessoa implements Serializable{
 				}
 			}
 		}catch(Exception e){
-			System.err.println("Erro ao listar clientes");
+			System.err.println("Erro ao pesquisar pessoa");
 		}
 		return null;
 
@@ -117,16 +117,14 @@ public class ColecaoPessoa implements Serializable{
 					try {
 						
 						id.salvarEmArq(pessoas);
-
+						return true;
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
 			
 			}
 		}
-
-
-		return true;
+		return false;
 
 	}
 	

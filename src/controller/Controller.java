@@ -99,36 +99,36 @@ public class Controller implements Icontroller, Serializable{
 	
 	/************************Locacao*********************/
 	@Override
-	public void realizarLocacao(Locacao l) {
+	public void realizarLocacao(Locacao l) throws Exception{
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public ArrayList<Locacao> listarLocacoes() {
+	public ArrayList<Locacao> listarLocacoes() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public Locacao pesquisarLocacao(Pessoa p) {
+	public Locacao pesquisarLocacao(Pessoa p) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public Locacao pesquisarLocacao(Veiculo v) {
+	public Locacao pesquisarLocacao(Veiculo v) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public Locacao pesquisarLocacao(int id){
-		return cl.pesquisaLocacao(id);
+	public Locacao pesquisarLocacao(int id)throws Exception{
+		return cl.pesquisarLocacao(id);
 	}
 	
 	@Override
-	public boolean removerLocacao(int id) {
+	public boolean removerLocacao(int id) throws Exception{
 		// TODO Auto-generated method stub
 		return false;
 	}

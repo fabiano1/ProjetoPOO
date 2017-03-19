@@ -46,7 +46,7 @@ public class ColecaoVeiculo {
 				return this.veiculos;
 			}
 		}catch(Exception e){
-			System.err.println("eero ao listar veiculos");
+			System.err.println("erro ao listar veiculos");
 		}
 			return null;
 	}
@@ -63,7 +63,7 @@ public class ColecaoVeiculo {
 			}
 			return veiculos;
 		}catch(Exception e){
-			System.err.println("Erro ao listar clientes");
+			System.err.println("erro ao listar veiculos disponiveis");
 		}
 		return null;
 
@@ -81,7 +81,7 @@ public class ColecaoVeiculo {
 			}
 			return automovel;
 		}catch(Exception e){
-			System.err.println("Erro ao listar clientes");
+			System.err.println("erro ao listar automoveis");
 		}
 		return null;
 
@@ -99,7 +99,7 @@ public class ColecaoVeiculo {
 			}
 			return motocicleta;
 		}catch(Exception e){
-			System.err.println("Erro ao listar clientes");
+			System.err.println("erro ao listar motocicletas");
 		}
 		return null;
 
@@ -115,7 +115,7 @@ public class ColecaoVeiculo {
 				}
 			}
 		}catch(Exception e){
-			System.err.println("Erro ao listar clientes");
+			System.err.println("erro ao pesquisar veiculos");
 		}
 		return null;
 
@@ -123,16 +123,19 @@ public class ColecaoVeiculo {
 	
 	public boolean removerVeiculo(String placa) throws Exception{
 		try{
+			Idao id;
+			ObjectInputStream stream;
+			
 			for (Veiculo v : this.veiculos) {
 				if(v.getPlaca().getNumerosEletras().equals(placa)){
 					this.veiculos.remove(v);
+	//				id.salvarEmrArq(this.veiculo,"veiculos.txt");
+					return true;
 				}
 			}
-			Idao id;
-			ObjectInputStream stream;
-			return true;
+
 		}catch(Exception e){
-			System.err.println("erro ao remover");
+			System.err.println("erro ao remover veiculo");
 		}
 		
 		/*
