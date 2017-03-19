@@ -12,84 +12,87 @@ public class Controller implements Icontroller, Serializable{
 	private	ColecaoLocacao cl=new ColecaoLocacao();
 	private	ColecaoVeiculo cv=new ColecaoVeiculo();
 	
-	/********************Pessoa*************************/
+	/******************Pessoa
+	 * @throws Exception ***************
+	 
+	 **/
 	@Override
-	public boolean addPessoa(Pessoa p) {
+	public boolean addPessoa(Pessoa p) throws Exception {
 
 		cp.addPessoa(p);
 		return true;
 	}
 	
 	@Override
-	public ArrayList<Pessoa> listarPessoa() {
+	public ArrayList<Pessoa> listarPessoa() throws Exception{
 
 		return cp.listarPessoa();
 	}
 	
 	@Override
-	public ArrayList<Cliente> listarCliente() {
+	public ArrayList<Cliente> listarCliente() throws Exception{
 
 		return cp.listarClientes();
 
 	}
 	
 	@Override
-	public ArrayList<Funcionario> listarFuncionario() {
+	public ArrayList<Funcionario> listarFuncionario() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public Pessoa pesquisarPessoaPeloCPF(String cpf) {
+	public Pessoa pesquisarPessoaPeloCPF(String cpf) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public boolean removerPessoa(String cpf) {
+	public boolean removerPessoa(String cpf) throws Exception{
 			
 		return cp.removerPessoa(cpf);
 	}
 	
 	/********************Veiculo***************************/
 	@Override
-	public void addVeiculo(Veiculo v) {
+	public void addVeiculo(Veiculo v) throws Exception{
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public ArrayList<Veiculo> listarVeiculos() {
+	public ArrayList<Veiculo> listarVeiculos() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public ArrayList<Veiculo> listarVeiculosDisponiveis() {
+	public ArrayList<Veiculo> listarVeiculosDisponiveis() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public ArrayList<Automovel> listarAutomoveis() {
+	public ArrayList<Automovel> listarAutomoveis() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public ArrayList<Motocicleta> listarMotocicletas() {
+	public ArrayList<Motocicleta> listarMotocicletas() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public Veiculo pesquisarVeiculo(String placa) {
+	public Veiculo pesquisarVeiculo(String placa) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public boolean removerVeiculo(String placa) {
+	public boolean removerVeiculo(String placa) throws Exception{
 		// TODO Auto-generated method stub
 		return false;
 	}

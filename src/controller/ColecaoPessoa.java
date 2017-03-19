@@ -2,7 +2,6 @@ package controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import dao.ControllerDao;
 import dao.Idao;
 
@@ -14,16 +13,18 @@ public class ColecaoPessoa implements Serializable{
 	
 	private Idao id=new ControllerDao();
 	private ArrayList<Pessoa> pessoas=id.carregarPessoas();
-	public ColecaoPessoa(ArrayList<Pessoa> pessoas) {
+	
+	public ColecaoPessoa(ArrayList<Pessoa> pessoas){
 		this.pessoas = pessoas;
 	}
 
-	public ColecaoPessoa() {
-
+	public ColecaoPessoa(){
+		
+	//	this.pessoa = (ArrayList<Pessoa>)id.carregarArq("pessoa.txt");
 		this.pessoas = new ArrayList<Pessoa>();
 	}
 
-	public boolean addPessoa(Pessoa p){
+	public boolean addPessoa(Pessoa p)throws Exception{
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
@@ -42,28 +43,71 @@ public class ColecaoPessoa implements Serializable{
 		return false;
 	}
 
-	public ArrayList<Pessoa> listarPessoa(){
-		if(!pessoas.isEmpty()){
-			return pessoas;
+	public ArrayList<Pessoa> listarPessoa()throws Exception{
+		try{
+			if(!pessoas.isEmpty()){
+				return pessoas;
+			}
+		}catch(Exception e){
+			System.err.println("erro ao listar pessoas");
 		}
 		return null;
 	}
 
-	public ArrayList<Cliente> listarClientes(){
-		ArrayList<Cliente> clientes=new ArrayList<Cliente>();
+	public ArrayList<Cliente> listarClientes()throws Exception{
+	
+		try{
+			ArrayList<Cliente> clientes=new ArrayList<Cliente>();
 
-		for (Pessoa pessoa : id.carregarPessoas()) {
-
-			if(pessoa instanceof Cliente){
-				clientes.add((Cliente) pessoa);
-
+			for (Pessoa pessoa : id.carregarPessoas()) {
+				if(pessoa instanceof Cliente){
+					clientes.add((Cliente) pessoa);
+				}
 			}
+			return clientes;
+		}catch(Exception e){
+			System.err.println("erro ao listar pessoas");
 		}
-		return clientes;
+		return null;
+	}
+	
+	public ArrayList<Funcionario> listarFuncionarios()throws Exception{
+		
+		try{
+			ArrayList<Funcionario> func =new ArrayList<Funcionario>();
+
+			for (Pessoa pessoa : id.carregarPessoas()) {
+
+				if(pessoa instanceof Funcionario){
+					func.add((Funcionario) pessoa);
+				}
+			}
+			return func;
+		}catch(Exception e){
+			System.err.println("erro ao listar pessoas");
+		}
+		return null;
+
+	}
+	
+	public Pessoa pesquisarPessoaPeloCPF(String cpf)throws Exception {
+		try{
+
+			for (Pessoa p : this.pessoas){
+
+				if( p.getCpf().equals(cpf)){
+					return p;
+				}
+			}
+		}catch(Exception e){
+			System.err.println("Erro ao listar clientes");
+		}
+		return null;
 
 	} 
+	
 
-	public boolean removerPessoa(String cpf) {
+	public boolean removerPessoa(String cpf) throws Exception{
 
 		for (Pessoa pessoa : pessoas) {
 			if(pessoa.getCpf().equals(cpf)){
@@ -86,9 +130,5 @@ public class ColecaoPessoa implements Serializable{
 
 	}
 	
-
-
-
-
 
 }

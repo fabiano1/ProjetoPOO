@@ -47,19 +47,19 @@ public class Principal implements Serializable{
 			System.out.println("\nVeiculo:");
 			System.out.println("7- Adicionar Veiculo");
 			System.out.println("8- Listar Veiculos");
-			System.out.println("10- Listar Veiculos Disponiveis");
-			System.out.println("11- Listar Automoveis");
-			System.out.println("12- Listar Motocicletas");
-			System.out.println("13- Procurar Veiculo");
-			System.out.println("14- Remover Veiculo");
+			System.out.println("9- Listar Veiculos Disponiveis");
+			System.out.println("10- Listar Automoveis");
+			System.out.println("11- Listar Motocicletas");
+			System.out.println("12- Procurar Veiculo");
+			System.out.println("13- Remover Veiculo");
 			
 			System.out.println("\nLocacao:");
-			System.out.println("15- Adiconar Locacao");
-			System.out.println("16- Listar Locacoes");
-			System.out.println("17- Procurar Locacao por ID");
-			System.out.println("18- Procurar Locacao por Pessoa");
-			System.out.println("19- Procurar Locacao por veiculo");
-			System.out.println("20- Remover Locacao");
+			System.out.println("14- Adiconar Locacao");
+			System.out.println("15- Listar Locacoes");
+			System.out.println("16- Procurar Locacao por ID");
+			System.out.println("17- Procurar Locacao por Pessoa");
+			System.out.println("18- Procurar Locacao por veiculo");
+			System.out.println("19- Remover Locacao");
 		
 			System.out.print("\nOpção: ");
 //			op = LerNumero();
