@@ -18,7 +18,11 @@ public class ColecaoVeiculo {
 	}
 
 	public ColecaoVeiculo() {
-
+		/*
+		 *	Arraylist<Veiculo> list = new ArrayList<Veiculo>();
+			list = id.recuparArq(this.veiculo,"veiculos.txt");
+			this.veiculo = (ArrayList<Veiculo>)list;
+		*/
 		this.veiculos = new ArrayList<Veiculo>();
 	}
 
