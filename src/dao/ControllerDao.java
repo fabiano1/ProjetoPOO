@@ -14,11 +14,10 @@ public class ControllerDao implements Idao, Serializable{
 
 	@Override
 	public boolean salvarEmArq(ArrayList<Pessoa> p) {
-		// TODO Auto-generated method stub
 		
 			 
 	           try {
-	             FileOutputStream saveFile = new FileOutputStream("bd.txt");
+	             FileOutputStream saveFile = new FileOutputStream("bd.dat");
 	             ObjectOutputStream stream = new ObjectOutputStream(saveFile);
 	             
 	              // salva o objeto
@@ -38,10 +37,12 @@ public class ControllerDao implements Idao, Serializable{
 		ArrayList<Pessoa> list = null;
            
             try {
-                   FileInputStream restFile = new FileInputStream("bd.txt");
+                   FileInputStream restFile = new FileInputStream("bd.dat");
+                   
                    ObjectInputStream stream = new ObjectInputStream(restFile);
 
                    // recupera o objeto
+                  
                    list = (ArrayList<Pessoa>) stream.readObject();
 
                    stream.close();
@@ -52,5 +53,12 @@ public class ControllerDao implements Idao, Serializable{
             return list;
      
 	}
-
+	/*
+	File arquivo = new File("CAMINHO DO ARQUIVO.EXTENSÃO");
+	if(arquivo.exists()){
+	    //O ARQUIVO EXISTE
+	}else{
+	    //O ARQUIVO NÃO EXISTE
+	}
+*/
 }

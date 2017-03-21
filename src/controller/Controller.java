@@ -2,6 +2,7 @@ package controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Controller implements Icontroller, Serializable{
 	/**
@@ -88,14 +89,14 @@ public class Controller implements Icontroller, Serializable{
 
 	@Override
 	public ArrayList<Veiculo> listarVeiculosDisponiveis() throws Exception{
-			
+
 
 		return cv.listarVeiculosDisponiveis();
 	}
 
 	@Override
 	public ArrayList<Automovel> listarAutomoveis() throws Exception{
-		
+
 		return cv.listarAutomoveis();
 	}
 
@@ -107,7 +108,7 @@ public class Controller implements Icontroller, Serializable{
 
 	@Override
 	public Veiculo pesquisarVeiculo(String placa) throws Exception{
-		
+
 		try{
 
 			for (Veiculo v : cv.listarVeiculos()){
@@ -121,50 +122,81 @@ public class Controller implements Icontroller, Serializable{
 		}
 		return null;
 
-		
-		
+
+
 	}
 
 	@Override
 	public boolean removerVeiculo(String placa) throws Exception{
-		// TODO Auto-generated method stub
+
+		cv.removerVeiculo(placa);
 		return true;
 	}
 
 	/************************Locacao*********************/
 	@Override
 	public boolean realizarLocacao(Locacao l) throws Exception{
-		// TODO Auto-generated method stub
+
+		cl.addLocacao(l);
+
 		return true;
 	}
 
 	@Override
 	public ArrayList<Locacao> listarLocacoes() throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+
+		return cl.listarLocacoes();
 	}
 
 	@Override
 	public Locacao pesquisarLocPorPessoa(String cpf) throws Exception{
-		// TODO Auto-generated method stub
+		try{
+			for (Locacao loc : cl.listarLocacoes()) {
+				if(loc.getPessoa().getCpf().equals(cpf)){
+					return loc;
+				}
+
+			}
+		}catch(Exception e){
+			System.err.println("erro ao pesquisar locacao");
+		}
+
 		return null;
 	}
 
 	@Override
 	public Locacao pesquisarLocPorVeiculo(String placa) throws Exception{
-		// TODO Auto-generated method stub
+		try{
+			for (Locacao loc : cl.listarLocacoes()) {
+				if(loc.getVeiculo().getPlaca().equals(placa)){
+					return loc;
+				}
+
+			}
+		}catch(Exception e){
+			System.err.println("erro ao pesquisar locacao");
+		}
 		return null;
 	}
 
 	@Override
 	public Locacao pesquisarLocacao(int id)throws Exception{
-		return cl.pesquisarLocacao(id);
+		try{
+			for (Locacao locacao : cl.listarLocacoes()) {
+				if (locacao.getId()==id){
+					return locacao;
+				}
+			}
+		}catch(Exception e){
+			System.err.println("erro ao pesquisar locacao");
+		}
+		return null;
 	}
 
 	@Override
 	public boolean removerLocacao(int id) throws Exception{
-		// TODO Auto-generated method stub
-		return false;
+		cl.removerLocacao(id);
+		return true;
 	}
 
 
