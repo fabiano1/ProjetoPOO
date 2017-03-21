@@ -56,8 +56,9 @@ public class Controller implements Icontroller, Serializable{
 	
 	/********************Veiculo***************************/
 	@Override
-	public void addVeiculo(Veiculo v) throws Exception{
+	public boolean addVeiculo(Veiculo v) throws Exception{
 		// TODO Auto-generated method stub
+		return true;
 		
 	}
 	
@@ -99,9 +100,9 @@ public class Controller implements Icontroller, Serializable{
 	
 	/************************Locacao*********************/
 	@Override
-	public void realizarLocacao(Locacao l) throws Exception{
+	public boolean realizarLocacao(Locacao l) throws Exception{
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 	
 	@Override
