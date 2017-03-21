@@ -89,7 +89,7 @@ public class ColecaoPessoa implements Serializable{
 		return null;
 
 	}
-	
+	/*
 	public Pessoa pesquisarPessoaPeloCPF(String cpf)throws Exception {
 		try{
 
@@ -106,7 +106,7 @@ public class ColecaoPessoa implements Serializable{
 
 	} 
 	
-
+*/
 	public boolean removerPessoa(String cpf) throws Exception{
 
 		for (Pessoa pessoa : pessoas) {

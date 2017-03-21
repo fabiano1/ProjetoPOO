@@ -11,10 +11,10 @@ public class Controller implements Icontroller, Serializable{
 	private ColecaoPessoa cp=new ColecaoPessoa();
 	private	ColecaoLocacao cl=new ColecaoLocacao();
 	private	ColecaoVeiculo cv=new ColecaoVeiculo();
-	
+
 	/******************Pessoa
 	 * @throws Exception ***************
-	 
+
 	 **/
 	@Override
 	public boolean addPessoa(Pessoa p) throws Exception {
@@ -22,112 +22,145 @@ public class Controller implements Icontroller, Serializable{
 		cp.addPessoa(p);
 		return true;
 	}
-	
+
 	@Override
 	public ArrayList<Pessoa> listarPessoa() throws Exception{
 
 		return cp.listarPessoa();
 	}
-	
+
 	@Override
 	public ArrayList<Cliente> listarCliente() throws Exception{
 
 		return cp.listarClientes();
 
 	}
-	
+
 	@Override
 	public ArrayList<Funcionario> listarFuncionario() throws Exception{
 		// TODO Auto-generated method stub
-		return null;
+		return cp.listarFuncionarios();
 	}
-	
+
 	@Override
 	public Pessoa pesquisarPessoaPeloCPF(String cpf) throws Exception{
-		// TODO Auto-generated method stub
+		try{
+
+			for (Pessoa p : cp.listarPessoa()){
+
+				if( p.getCpf().equals(cpf)){
+					return p;
+				}
+			}
+		}catch(Exception e){
+			System.err.println("Erro ao pesquisar pessoa");
+		}
 		return null;
+
+
 	}
-	
+
 	@Override
 	public boolean removerPessoa(String cpf) throws Exception{
-			
-		return cp.removerPessoa(cpf);
+
+		cp.removerPessoa(cpf);
+
+		return true;
 	}
-	
+
 	/********************Veiculo***************************/
 	@Override
 	public boolean addVeiculo(Veiculo v) throws Exception{
-		// TODO Auto-generated method stub
+
+		cv.addVeiculo(v);
+
 		return true;
-		
+
 	}
-	
+
 	@Override
 	public ArrayList<Veiculo> listarVeiculos() throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+
+
+
+		return cv.listarVeiculos();
 	}
-	
+
 	@Override
 	public ArrayList<Veiculo> listarVeiculosDisponiveis() throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+			
+
+		return cv.listarVeiculosDisponiveis();
 	}
-	
+
 	@Override
 	public ArrayList<Automovel> listarAutomoveis() throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+		
+		return cv.listarAutomoveis();
 	}
-	
+
 	@Override
 	public ArrayList<Motocicleta> listarMotocicletas() throws Exception{
 		// TODO Auto-generated method stub
-		return null;
+		return cv.listarMotocicleta();
 	}
-	
+
 	@Override
 	public Veiculo pesquisarVeiculo(String placa) throws Exception{
-		// TODO Auto-generated method stub
+		
+		try{
+
+			for (Veiculo v : cv.listarVeiculos()){
+
+				if( v.getPlaca().getNumerosEletras().equals(placa)){
+					return v;
+				}
+			}
+		}catch(Exception e){
+			System.err.println("erro ao pesquisar veiculos");
+		}
 		return null;
+
+		
+		
 	}
-	
+
 	@Override
 	public boolean removerVeiculo(String placa) throws Exception{
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-	
+
 	/************************Locacao*********************/
 	@Override
 	public boolean realizarLocacao(Locacao l) throws Exception{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+
 	@Override
 	public ArrayList<Locacao> listarLocacoes() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
-	public Locacao pesquisarLocacao(Pessoa p) throws Exception{
+	public Locacao pesquisarLocPorPessoa(String cpf) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
-	public Locacao pesquisarLocacao(Veiculo v) throws Exception{
+	public Locacao pesquisarLocPorVeiculo(String placa) throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public Locacao pesquisarLocacao(int id)throws Exception{
 		return cl.pesquisarLocacao(id);
 	}
-	
+
 	@Override
 	public boolean removerLocacao(int id) throws Exception{
 		// TODO Auto-generated method stub

@@ -134,11 +134,11 @@ public class Principal implements Serializable{
 				case 17:
 					System.out.print("digite o cpf do cliente: ");
 					str = lerDocumento();
-					System.out.println(ic.pesquisarLocacao(ic.pesquisarPessoaPeloCPF(str)));
+					//System.out.println(ic.pesquisarLocacao(ic.pesquisarPessoaPeloCPF(str)));
 				case 18:
 					System.out.print("digite o numero da  placa do veiculo: ");
 					str = sc.nextLine();
-					System.out.println(ic.pesquisarLocacao(ic.pesquisarVeiculo(str)));
+				//	System.out.println(ic.pesquisarLocacao(ic.pesquisarVeiculo(str)));
 				case 19:
 					System.out.print("digite o id da locacao: ");
 					i = lerInteiro();

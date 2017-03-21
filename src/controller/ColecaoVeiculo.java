@@ -108,30 +108,13 @@ public class ColecaoVeiculo {
 		return null;
 
 	} 
-
-	public Veiculo pesquisarVeiculo(String placa)throws Exception {
-		try{
-
-			for (Veiculo v : this.veiculos){
-
-				if( v.getPlaca().getNumerosEletras().equals(placa)){
-					return v;
-				}
-			}
-		}catch(Exception e){
-			System.err.println("erro ao pesquisar veiculos");
-		}
-		return null;
-
-	} 
-	
 	public boolean removerVeiculo(String placa) throws Exception{
 		try{
-			Idao id;
-			ObjectInputStream stream;
+		//	Idao id;
+			//ObjectInputStream stream;
 			
 			for (Veiculo v : this.veiculos) {
-				if(v.getPlaca().getNumerosEletras().equals(placa)){
+				if(v.getPlaca().getNumerosEletras().equalsIgnoreCase(placa)){
 					this.veiculos.remove(v);
 	//				id.salvarEmrArq(this.veiculo,"veiculos.txt");
 					return true;
