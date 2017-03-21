@@ -156,6 +156,16 @@ public class Principal implements Serializable{
 		Funcionario func = new Funcionario();
 		Endereco endereco = new Endereco();
 		
+	//	System.out.println("Escolha o tipo de Pessoa");
+	//	str = sc.nextLine();
+		
+	//	if(str.equals("cliente")){
+	//		Pessoa p = new Cliente();
+	//	}
+	//	if(true){
+	//		Pessoa p = new Funcionario();
+	//	}
+		
 		System.out.print("digite o cpf do paciente: ");
 		str = lerDocumento();
 	//	if(pessoa.pesquisaPeloCPF(str)!= null)
@@ -192,6 +202,16 @@ public class Principal implements Serializable{
 		endereco.setEstado(str);
 		
 		client.setEndereco(endereco);
+		
+		/*if(str.equals("cliente")){
+			Pessoa p = new Cliente();
+			Cliente cli = new Cliente();
+			cli = (Cliente)p;
+			cli.setCnh(str);
+		}
+		if(true){
+			Pessoa p = new Funcionario();
+		}*/
 		
 		if(!ic.addPessoa(client)){
 			System.out.println("erro ao cadastrar paciente");
