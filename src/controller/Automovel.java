@@ -1,11 +1,19 @@
 package controller;
 
 public class Automovel extends Veiculo{
+	
 	private int qtdDePortas;
 	private int numeroDePassageiros;
 
 	//teste
 	
+	
+	/**
+	 * 
+	 */
+	public Automovel() {
+		super();
+	}
 	
 	public Automovel(Placa placa, boolean disponibilidade, String marca, String modelo, double precoPorHra,
 			int qtdDePortas, int numeroDePassageiros) {
@@ -14,6 +22,7 @@ public class Automovel extends Veiculo{
 		this.numeroDePassageiros = numeroDePassageiros;
 	}
 	
+
 	public int getQtdDePortas() {
 		return qtdDePortas;
 	}

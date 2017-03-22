@@ -98,7 +98,7 @@ public class Principal implements Serializable{
 					
 				/*Veiculo*/
 				case 7:
-		//			if(adicionarVeiculo())
+					if(adicionarVeiculo())
 					{
 						System.out.println("Veiculo adicionado com sucesso");
 					}
@@ -121,7 +121,7 @@ public class Principal implements Serializable{
 				
 				/*Locacao*/
 				case 14:
-		//			if(adicionarLocacao())
+					if(adicionarLocacao())
 					{
 						System.out.println("Locacao adicionado com sucesso");
 					}
@@ -151,40 +151,63 @@ public class Principal implements Serializable{
 		int op = 0;
 		Scanner sc = new Scanner(System.in);
 		String str = new String();
-		String data = new String();
 		Cliente client = new Cliente();
 		Funcionario func = new Funcionario();
+	
+		
+		do{
+			System.out.println("Escolha o tipo de Pessoa");
+			System.out.println("1 - Cliente");
+			System.out.println("2 - Funcionario");
+			System.out.print("opcao: ");
+			op = sc.nextInt();
+		}while((op!=1)&&(op!=2));
+		
+		if(op==1){
+			lerDadosPessoa(client);
+			System.out.println("digite a cnh:");
+			str = lerDocumento();
+			client.setCnh(str);
+			ic.addPessoa(client);
+			return true;
+		}
+		if(op==2){
+			lerDadosPessoa(func);
+			System.out.println("digite o cargo:");
+			str = sc.nextLine();
+			func.setCargo(str);
+			ic.addPessoa(func);
+			return true;
+		}
+		
+		return false;
+	}
+
+	public static boolean lerDadosPessoa(Pessoa p) throws Exception{
+		String str;
+		Scanner sc = new Scanner(System.in);
 		Endereco endereco = new Endereco();
-		
-	//	System.out.println("Escolha o tipo de Pessoa");
-	//	str = sc.nextLine();
-		
-	//	if(str.equals("cliente")){
-	//		Pessoa p = new Cliente();
-	//	}
-	//	if(true){
-	//		Pessoa p = new Funcionario();
-	//	}
+		String data = new String();
 		
 		System.out.print("digite o cpf do paciente: ");
 		str = lerDocumento();
-	//	if(pessoa.pesquisaPeloCPF(str)!= null)
-	//	{
-	//		System.out.println("pessoa já está cadastrado");
-	//		return false;
-	//	}
-		client.setCpf(str);
+		if(ic.pesquisarPessoaPeloCPF(str)!= null)
+		{
+			System.out.println("pessoa já está cadastrado");
+			return false;
+		}
+		p.setCpf(str);
 		
 		System.out.print("digite o nome do paciente: ");
 		str = lerNome();
-		client.setNome(str);
+		p.setNome(str);
 		
 		System.out.print("digite a data de Nascimento: ");
 		str = lerData();
-	//	client.setDataNascimento(str);
+	//	p.setDataNascimento(str);
 		
 		System.out.print("digite o endereço do paciente: ");
-
+	
 		System.out.print("Cep: ");
 		str = sc.nextLine();
 		endereco.setCep(str);
@@ -201,22 +224,117 @@ public class Principal implements Serializable{
 		str = sc.nextLine();
 		endereco.setEstado(str);
 		
-		client.setEndereco(endereco);
+		p.setEndereco(endereco);
+		return true;
 		
-		/*if(str.equals("cliente")){
-			Pessoa p = new Cliente();
-			Cliente cli = new Cliente();
-			cli = (Cliente)p;
-			cli.setCnh(str);
+	}
+	
+	public static boolean adicionarVeiculo() throws Exception{
+		int op = 0, i = 0;
+		Scanner sc = new Scanner(System.in);
+		String str = new String();
+		Automovel automovel= new Automovel();
+		Motocicleta motocicleta = new Motocicleta();
+	
+		
+		do{
+			System.out.println("Escolha o tipo de Veiculo");
+			System.out.println("1 - Automovel");
+			System.out.println("2 - Motocicleta");
+			System.out.print("opcao: ");
+			op = sc.nextInt();
+		}while((op!=1)&&(op!=2));
+		
+		if(op==1){
+			lerDadosVeiculo(automovel);
+			System.out.println("digite a quantidade de portas:");
+			i = lerInteiro();
+			automovel.setQtdDePortas(i);
+			ic.addVeiculo(automovel);
+			return true;
 		}
-		if(true){
-			Pessoa p = new Funcionario();
-		}*/
+		if(op==2){
+			lerDadosVeiculo(motocicleta);
+			System.out.println("digite o estilo:");
+			str = sc.nextLine();
+			motocicleta.setEstilo(str);
+			ic.addVeiculo(motocicleta);
+			return true;
+		}
 		
-		if(!ic.addPessoa(client)){
-			System.out.println("erro ao cadastrar paciente");
+		return false;
+	}
+
+	public static boolean lerDadosVeiculo(Veiculo v) throws Exception{
+		String str;
+		Scanner sc = new Scanner(System.in);
+		Placa placa = new Placa();
+		String data = new String();
+		double d = 0;
+		
+		System.out.print("digite o numero da placa: ");
+		str = sc.nextLine();
+		if(ic.pesquisarVeiculo(str)!=null)
+		{
+			System.out.println("veiculo já existe");
 			return false;
 		}
+		
+		System.out.print("digite a placa: ");
+		
+		System.out.print("Numero: ");
+		str = sc.nextLine();
+		placa.setNumerosEletras(str);
+		System.out.print("Cidade: ");
+		str = sc.nextLine();
+		placa.setCidade(str);
+		System.out.print("Estado: ");
+		str = sc.nextLine();
+		placa.setEstado(str);
+		
+		v.setPlaca(placa);
+
+		System.out.print("digite a marca: ");
+		str = sc.nextLine();
+		v.setMarca(str);
+		
+		System.out.print("digite o Modelo: ");
+		str = sc.nextLine();
+		v.setModelo(str);
+		
+		System.out.print("digite o preco por hora ");
+		d = lerDouble();
+		v.setPrecoPorHra(d);
+		
+			
+		return true;
+		
+	}
+	
+	public static boolean adicionarLocacao() throws Exception{
+		String str;
+		Scanner sc = new Scanner(System.in);
+		Placa placa = new Placa();
+		String data = new String();
+		Locacao locacao = new Locacao();
+		double d = 0;
+		
+		System.out.print("digite a data de devolucao: ");
+		data = lerData();
+	//	locacao.setDataRetirada(data);
+		
+		System.out.print("digite o cpf do cliente: ");
+		str = lerDocumento();
+		if(ic.pesquisarPessoaPeloCPF(str) instanceof Cliente){
+			locacao.setPessoa(ic.pesquisarPessoaPeloCPF(str));
+		}else{
+			return false;
+		}
+		
+		System.out.print("digite o numero da placa do veiculo: ");
+		str = sc.nextLine();
+		locacao.setVeiculo(ic.pesquisarVeiculo(str));
+		
 		return true;
 	}
 	
@@ -230,6 +348,18 @@ public class Principal implements Serializable{
 			return lerInteiro();
 		}
 		return sc.nextInt();
+	}
+	
+	public static double lerDouble(){
+		Scanner sc = new Scanner(System.in);
+		
+		if( !sc.hasNextDouble())
+		{
+			sc.next();
+			System.out.printf("\nvoce deve digitar um numero: ");
+			return lerDouble();
+		}
+		return sc.nextDouble();
 	}
 	
 	public static String lerDocumento(){

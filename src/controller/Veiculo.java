@@ -8,6 +8,16 @@ public abstract class Veiculo {
 	private double precoPorHra;
 	
 	
+	
+	
+	/**
+	 * 
+	 */
+	public Veiculo() {
+		super();
+	}
+
+
 	public Veiculo(Placa placa, boolean disponibilidade, String marca, String modelo, double precoPorHra) {
 		super();
 		this.placa = placa;
@@ -16,6 +26,8 @@ public abstract class Veiculo {
 		this.modelo = modelo;
 		this.precoPorHra = precoPorHra;
 	}
+	
+	
 	
 	public Placa getPlaca() {
 		return placa;

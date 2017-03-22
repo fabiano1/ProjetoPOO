@@ -12,17 +12,21 @@ public class Funcionario extends Pessoa implements Serializable{
 	private String matricula;
 	
 
+	/**
+	 * 
+	 */
+	public Funcionario() {
+		super();
+	}
+	
 	public Funcionario(String nome, Endereco endereco, String cpf, String login, String senha, LocalDate dataNascimento,
 			String cargo, String matricula) {
 		super(nome, endereco, cpf, login, senha, dataNascimento);
 		this.cargo = cargo;
 		this.matricula = matricula;
+	//matricula ++;	
 	}
 
-
-	public Funcionario() {
-		// TODO Auto-generated constructor stub
-	}
 
 
 	public String getCargo() {

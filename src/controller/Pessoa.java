@@ -11,6 +11,12 @@ public abstract class Pessoa {
 	private LocalDate dataNascimento;
 	
 	
+	/**
+	 * 
+	 */
+	public Pessoa() {
+		super();
+	}
 	
 	public Pessoa(String nome, Endereco endereco, String cpf, String login, String senha, LocalDate dataNascimento) {
 		super();
@@ -21,9 +27,8 @@ public abstract class Pessoa {
 		this.senha = senha;
 		this.dataNascimento = dataNascimento;
 	}
-	public Pessoa() {
-		// TODO Auto-generated constructor stub
-	}
+	
+	
 	public String getNome() {
 		return nome;
 	}

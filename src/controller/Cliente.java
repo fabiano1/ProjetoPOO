@@ -11,6 +11,11 @@ public class Cliente extends Pessoa implements Serializable{
 	private String cnh;
 	private String categoriaCnh;
 	
+	
+	public Cliente() {
+		super();
+	}
+	
 	public Cliente(String nome, Endereco endereco, String cpf, String login, String senha, LocalDate dataNascimento,
 			String cnh, String categoriaCnh) {
 		super(nome, endereco, cpf, login, senha, dataNascimento);
@@ -18,9 +23,6 @@ public class Cliente extends Pessoa implements Serializable{
 		this.categoriaCnh = categoriaCnh;
 	}
 
-	public Cliente() {
-		super();
-	}
 
 	public String getCnh() {
 		return cnh;

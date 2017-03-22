@@ -8,6 +8,13 @@ public class Placa {
 	
 	
 	
+	/**
+	 * 
+	 */
+	public Placa() {
+		super();
+	}
+
 	public Placa(String estado, String cidade, String numerosEletras) {
 		
 		this.estado = estado;

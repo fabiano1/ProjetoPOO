@@ -10,7 +10,12 @@ public class Locacao {
 	private Veiculo veiculo;
 		
 	
-	
+	/**
+	 * 
+	 */
+	public Locacao() {
+		super();
+	}
 	
 	public Locacao(LocalDate dataRetirada, LocalDate dataDevolucao, Pessoa pessoa, Veiculo veiculo) {
 		this.dataRetirada = dataRetirada;
@@ -18,7 +23,7 @@ public class Locacao {
 		this.pessoa = pessoa;
 		this.veiculo = veiculo;
 		id++;
-}
+	}
 	public int getId() {
 		return id;
 	}
