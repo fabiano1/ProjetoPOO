@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface Icontroller{
 
-	public boolean carregarArqDePessoas() throws Exception;
+//	public boolean carregarArqDePessoas() throws Exception;
 	public boolean addPessoa(Pessoa p) throws Exception;
 	public ArrayList<Pessoa> listarPessoa() throws Exception;
 	public ArrayList<Cliente> listarCliente()throws Exception;

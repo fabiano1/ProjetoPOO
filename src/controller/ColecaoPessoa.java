@@ -15,9 +15,9 @@ public class ColecaoPessoa implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<Pessoa> pessoas;
 	private Idao id=new ControllerDao();
-	private static String localizacao = new String("pessoas.obj");
+	private static String localizacao = new String("pessoas.txt");
+	private ArrayList<Pessoa> pessoas = id.carregarArq("bd.dat");
 	
 	public ColecaoPessoa(ArrayList<Pessoa> pessoas){
 		this.pessoas = pessoas;
@@ -26,7 +26,8 @@ public class ColecaoPessoa implements Serializable{
 	public ColecaoPessoa(){
 		this.pessoas = new ArrayList<Pessoa>();
 	}
-	
+
+	/*	
 	public void recuperarArquivo() throws IOException, ClassNotFoundException{
 		try{
 			FileInputStream file = new FileInputStream(localizacao); 
@@ -42,24 +43,24 @@ public class ColecaoPessoa implements Serializable{
 	public boolean carregarArqDePessoas()throws Exception{
 		
 		try{
-			if(id.verificarArquivo(localizacao)){
-				this.pessoas = (ArrayList<Pessoa>)id.carregarArq(localizacao);
+//			if(id.verificarArquivo(localizacao)){
+//				this.pessoas = id.carregarArq(localizacao);
 				System.out.println(this.pessoas.toString());
-				if(this.pessoas==null){
+				if(this.pessoas!=null){
 					return true;
 				}	
-			}
+//			}
 		}catch(Exception e){
 			System.err.println("erro ao carregar arquivo");
 		}
 		return false;
-	}
+	}*/
 	
 	public boolean addPessoa(Pessoa p)throws Exception{
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
-				id.salvarEmArq(this.pessoas,localizacao);
+				this.id.salvarEmArq(this.pessoas,localizacao);
 				return true;
 
 			} catch (Exception e) {
@@ -77,6 +78,7 @@ public class ColecaoPessoa implements Serializable{
 	public ArrayList<Pessoa> listarPessoa()throws Exception{
 		try{
 		//	if(!pessoas.isEmpty()){
+		//		this.pessoas = this.id.carregarArq(localizacao);
 				return pessoas;
 		//	}
 		}catch(Exception e){
@@ -142,12 +144,12 @@ public class ColecaoPessoa implements Serializable{
 
 		for (Pessoa pessoa : pessoas) {
 			if(pessoa.getCpf().equals(cpf)){
-				
+
 					pessoas.remove(pessoa);
 
 					try {
 						
-						id.salvarEmArq(this.pessoas,localizacao);
+						this.id.salvarEmArq(this.pessoas,localizacao);
 						return true;
 					} catch (Exception e) {
 						// TODO: handle exception

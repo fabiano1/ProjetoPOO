@@ -17,10 +17,11 @@ public class ControllerDao implements Idao, Serializable{
 		
 			 
 	           try {
-	             FileOutputStream saveFile = new FileOutputStream(str);
+	             FileOutputStream saveFile = new FileOutputStream("bd.dat");
 	             ObjectOutputStream stream = new ObjectOutputStream(saveFile);
 	             
 	              // salva o objeto
+	             System.out.println(list+"\ncontrollerDao- salvar\n");
 	             stream.writeObject(list);
 	 
 	             stream.close();
@@ -34,13 +35,13 @@ public class ControllerDao implements Idao, Serializable{
 	@Override
 	public ArrayList<Pessoa> carregarArq(String str) {
 
-		Object obj = null;
-		ArrayList<Pessoa> list;
+	//	Object obj = null;
+		ArrayList<Pessoa> list = new ArrayList<Pessoa>();
            
             try{
-            	File file = new File(str);
+            	File file = new File("bd.dat");
             	if(file.exists()){
-            		FileInputStream restFile = new FileInputStream(str);
+            		FileInputStream restFile = new FileInputStream("bd.dat");
                   
             		ObjectInputStream stream = new ObjectInputStream(restFile);
 
@@ -48,20 +49,25 @@ public class ControllerDao implements Idao, Serializable{
                   
             	//	obj = (Object) stream.readObject();
             		list = (ArrayList<Pessoa>) stream.readObject();
+            		System.out.println(list+"\ncontrollerdao - carregar arquivo\n");
 
             		stream.close();
-            		return list;
             	}
-            	return null;
+            	else{
+            		FileOutputStream saveFile = new FileOutputStream("bd.dat",true);
+   	             	ObjectOutputStream stream = new ObjectOutputStream(saveFile);
+            	}
+            	
             } catch (Exception e) {
                    e.printStackTrace();
-                   return null;
             }
+            
+            return list;
      
 	}
 	
 	public boolean verificarArquivo(String str){
-		File file = new File(str);
+		File file = new File("bd.dat");
 		
 		if(file.exists()){
 			return true;

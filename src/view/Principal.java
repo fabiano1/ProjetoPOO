@@ -31,7 +31,10 @@ public class Principal implements Serializable{
 			System.out.println("3- Listar Clientes");
 			
 		}while(op!=0);*/
-		ic.carregarArqDePessoas();
+		
+		/*if(!ic.carregarArqDePessoas()){
+			System.out.println("Arquivo não foi carregado");
+		}*/
 		
 		do{
 			System.out.println("Menu ");
@@ -182,7 +185,14 @@ public class Principal implements Serializable{
 			System.out.print("digite a cnh:");
 			str = lerDocumento();
 			client.setCnh(str);
+			System.out.print("digite a categoria:");
+			sc.nextLine();
+			str = sc.nextLine();
+			client.setCategoriaCnh(str);
+			
+			System.out.println(client);
 			ic.addPessoa(client);
+			System.out.println(client);
 			return true;
 		}
 		if(op==2){
@@ -219,6 +229,14 @@ public class Principal implements Serializable{
 		System.out.print("digite a data de Nascimento: ");
 		str = lerData();
 	//	p.setDataNascimento(str);
+		
+		System.out.print("digite o login: ");
+		str = sc.nextLine();
+		p.setLogin(str);
+		
+		System.out.print("digite a senha: ");
+		str = sc.nextLine();
+		p.setSenha(str);
 		
 		System.out.print("digite o endereço da pessoa: ");
 	
