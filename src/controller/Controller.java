@@ -18,11 +18,16 @@ public class Controller implements Icontroller, Serializable{
 
 	 **/
 	
-	public boolean carregarArqDePessoas() throws Exception{
-		if(cp.carregarArqDePessoas()){
-			return true;
+	public boolean init() throws Exception{
+		try{
+			if((cp.carregarArqDePessoas())&& (cv.carregarArqDeVeiculos()) && (cl.carregarArqDeLocacoes())){
+				return true;
+			}
+		}catch(Exception e){
+			System.err.println("erro ao inicializar carregamento de arquivos");
 		}
 		return false;
+		
 	}
 	
 	@Override

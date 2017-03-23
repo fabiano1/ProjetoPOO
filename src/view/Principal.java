@@ -32,7 +32,7 @@ public class Principal implements Serializable{
 			
 		}while(op!=0);*/
 		
-		if(!ic.carregarArqDePessoas()){
+		if(!ic.init()){
 			System.out.println("Arquivo não foi carregado");
 		}
 		
@@ -177,7 +177,7 @@ public class Principal implements Serializable{
 			System.out.println("1 - Cliente");
 			System.out.println("2 - Funcionario");
 			System.out.print("opcao: ");
-			op = sc.nextInt();
+			op = lerInteiro();
 		}while((op!=1)&&(op!=2));
 		
 		if(op==1){
@@ -303,9 +303,7 @@ public class Principal implements Serializable{
 		Placa placa = new Placa();
 		String data = new String();
 		double d = 0;
-		
-		System.out.print("digite o numero da placa: ");
-		str = sc.nextLine();
+	
 	/*	if(ic.pesquisarVeiculo(str)!=null)
 		{
 			System.out.println("veiculo já existe");

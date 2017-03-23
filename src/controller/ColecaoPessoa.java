@@ -44,7 +44,7 @@ public class ColecaoPessoa implements Serializable{
 		
 		try{
 			if(id.verificarArquivo(localizacao)){
-				this.pessoas = id.carregarArq(localizacao);
+				this.pessoas = (ArrayList<Pessoa>) id.carregarArq(localizacao);
 			//	System.out.println(this.pessoas.toString());
 				if(this.pessoas!=null){
 					return true;
@@ -78,7 +78,7 @@ public class ColecaoPessoa implements Serializable{
 	public ArrayList<Pessoa> listarPessoa()throws Exception{
 		try{
 		//	if(!pessoas.isEmpty()){
-				this.pessoas = id.carregarArq(localizacao);
+		//		this.pessoas = (ArrayList<Pessoa>) id.carregarArq(localizacao);
 				return this.pessoas;
 		//	}
 		}catch(Exception e){
@@ -92,7 +92,7 @@ public class ColecaoPessoa implements Serializable{
 		try{
 			ArrayList<Cliente> clientes=new ArrayList<Cliente>();
 
-			for (Pessoa pessoa : id.carregarArq("bd.dat")) {
+			for (Pessoa pessoa : this.pessoas) {
 				if(pessoa instanceof Cliente){
 					clientes.add((Cliente) pessoa);
 				}

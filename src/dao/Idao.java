@@ -7,8 +7,8 @@ import controller.Pessoa;
 
 public interface Idao {
 	
-	public boolean salvarEmArq(ArrayList<Pessoa> list, String str);
-	public ArrayList<Pessoa> carregarArq(String str);
+	public boolean salvarEmArq(Object obj, String str);
+	public Object carregarArq(String str);
 	public boolean verificarArquivo(String str);
 	
 

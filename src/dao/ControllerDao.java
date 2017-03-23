@@ -13,15 +13,15 @@ public class ControllerDao implements Idao, Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public boolean salvarEmArq(ArrayList<Pessoa> list, String str) {
+	public boolean salvarEmArq(Object obj, String localizacao) {
 		
 			 
 	           try {
-	             FileOutputStream saveFile = new FileOutputStream("bd.dat");
+	             FileOutputStream saveFile = new FileOutputStream(localizacao);
 	             ObjectOutputStream stream = new ObjectOutputStream(saveFile);
 	             
 	              // salva o objeto
-	             stream.writeObject(list);
+	             stream.writeObject(obj);
 	         //  System.out.println(list+"\ncontrollerDao- salvar\n");
 	         //  System.out.println(stream+"\nobject de salvar arquivo\n");
 	             
@@ -34,43 +34,43 @@ public class ControllerDao implements Idao, Serializable{
 	}
 
 	@Override
-	public ArrayList<Pessoa> carregarArq(String str) {
+	public Object carregarArq(String localizacao) {
 
-	//	Object obj = null;
-		ArrayList<Pessoa> list = new ArrayList<Pessoa>();
+		Object obj = new Object();
+		//ArrayList<Pessoa> list = new ArrayList<Pessoa>();
            
             try{
-            	File file = new File("bd.dat");
+            	File file = new File(localizacao);
             	if(file.exists()){
-            		FileInputStream restFile = new FileInputStream("bd.dat");
+            		FileInputStream restFile = new FileInputStream(localizacao);
                   
             		ObjectInputStream stream = new ObjectInputStream(restFile);
 
             		// recupera o objeto
                   
-            	//	obj = (Object) stream.readObject();
-            		list = (ArrayList<Pessoa>) stream.readObject();
+            		obj = (Object) stream.readObject();
+            	//	list = (Object) stream.readObject();
             	//	System.out.println(list+"\ncontrollerdao - carregar arquivo\n");
 
             		stream.close();
-            		return list;
+            		return obj;
             	}
             	else{
-            		FileOutputStream saveFile = new FileOutputStream("bd.dat",true);
+            		FileOutputStream saveFile = new FileOutputStream(localizacao,true);
    	             	ObjectOutputStream stream = new ObjectOutputStream(saveFile);
-   	             	return list;
+   	             	return obj;
             	}
             	
             } catch (Exception e) {
                    e.printStackTrace();
             }
             
-            return list;
+            return obj;
      
 	}
 	
-	public boolean verificarArquivo(String str){
-		File file = new File("bd.dat");
+	public boolean verificarArquivo(String localizacao){
+		File file = new File(localizacao);
 		
 		if(file.exists()){
 			return true;

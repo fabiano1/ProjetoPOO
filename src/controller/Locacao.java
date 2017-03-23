@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Locacao {
+public class Locacao implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private static int id=0;
 	private LocalDate dataRetirada;
 	private LocalDate dataDevolucao;
@@ -95,8 +98,8 @@ public class Locacao {
 	}
 	@Override
 	public String toString() {
-		return "Locacao [dataRetirada=" + dataRetirada + ", dataDevolucao=" + dataDevolucao + ", pessoa=" + pessoa
-				+ ", veiculo=" + veiculo + "]";
+		return "\nLocacao [dataRetirada=" + dataRetirada + ", dataDevolucao=" + dataDevolucao + ", pessoa[nome=" + pessoa.getNome()+ 
+				", CPF=" + pessoa.getCpf() + ", veiculo=" + veiculo.getPlaca().getNumerosEletras() + "]\n";
 	}
 	
 	

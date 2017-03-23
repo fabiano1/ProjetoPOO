@@ -1,6 +1,10 @@
 package controller;
 
-public abstract class Veiculo {
+import java.io.Serializable;
+
+public abstract class Veiculo implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private Placa placa;
 	private boolean disponibilidade;
 	private String marca;
@@ -26,8 +30,6 @@ public abstract class Veiculo {
 		this.modelo = modelo;
 		this.precoPorHra = precoPorHra;
 	}
-	
-	
 	
 	public Placa getPlaca() {
 		return placa;
@@ -109,7 +111,7 @@ public abstract class Veiculo {
 
 	@Override
 	public String toString() {
-		return "Veiculo [placa=" + placa + ", disponibilidade=" + disponibilidade + ", marca=" + marca + ", modelo="
+		return "\nVeiculo [placa=" + placa + ", disponibilidade=" + disponibilidade + ", marca=" + marca + ", modelo="
 				+ modelo + ", precoPorHra=" + precoPorHra + "]";
 	}
 	

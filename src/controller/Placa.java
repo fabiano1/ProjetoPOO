@@ -1,6 +1,10 @@
 package controller;
 
-public class Placa {
+import java.io.Serializable;
+
+public class Placa implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String estado;
 	private String cidade;
 	private String NumerosEletras;

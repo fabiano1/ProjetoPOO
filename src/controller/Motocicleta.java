@@ -1,6 +1,10 @@
 package controller;
 
-public class Motocicleta extends Veiculo{
+import java.io.Serializable;
+
+public class Motocicleta extends Veiculo implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String estilo;
 
 	
@@ -54,10 +58,9 @@ public class Motocicleta extends Veiculo{
 
 	@Override
 	public String toString() {
-		return "Motocicleta [estilo=" + estilo + ", getPlaca()=" + getPlaca() + ", isDisponibilidade()="
-				+ isDisponibilidade() + ", getMarca()=" + getMarca() + ", getModelo()=" + getModelo()
-				+ ", getPrecoPorHra()=" + getPrecoPorHra() + ", toString()=" + super.toString() + ", getClass()="
-				+ getClass() + "]";
+		return "\nMotocicleta [estilo=" + estilo + ", Placa=" + getPlaca() + ", Disponibilidade="
+				+ isDisponibilidade() + ", Marca=" + getMarca() + ", getModelo=" + getModelo()
+				+ ", getPrecoPorHra=" + getPrecoPorHra() + "]\n";
 	}
 	
 	

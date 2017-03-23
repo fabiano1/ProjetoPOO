@@ -73,10 +73,9 @@ public class Cliente extends Pessoa implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cliente [cnh=" + cnh + ",\n categoriaCnh=" + categoriaCnh + ",\n getNome()=" + super.getNome()
-				+ ",\n getEndereco()=" + super.getEndereco() + ",\n getCpf()=" + super.getCpf() + ",\n getLogin()=" + getLogin()
-				+ ",\n getSenha()=" + super.getSenha() + ",\n getDataNascimento()=" + super.getDataNascimento() + ",\n toString()="
-				+ super.toString() + ",\n getClass()=" + getClass() + "]\n";
+		return "\nCliente [cnh=" + cnh + ", categoriaCnh=" + categoriaCnh + ", Nome=" + getNome()
+				+ ", Endereco=" + getEndereco() + " Cpf=" + getCpf() + ", Login=" + getLogin()
+				+ ", Senha=" + getSenha() + ", DataNascimento=" + getDataNascimento() + "]\n";
 		
 	}
 	

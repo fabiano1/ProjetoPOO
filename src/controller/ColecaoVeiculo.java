@@ -26,19 +26,23 @@ public class ColecaoVeiculo implements Serializable{
 
 	public ColecaoVeiculo() {	 	
 		this.veiculos = new ArrayList<Veiculo>();
-		if(id.verificarArquivo(localizacao)){
-			carregarArqDeVeiculos();
-		}
 	}
 	
-	public boolean carregarArqDeVeiculos(){
+	
+	public boolean carregarArqDeVeiculos()throws Exception{
 		
-	//	this.veiculos = (ArrayList<Veiculo>) id.carregarArq(localizacao);
-		if(this.veiculos==null){
-			return false;
+		try{
+			if(id.verificarArquivo(localizacao)){
+				this.veiculos = (ArrayList<Veiculo>) id.carregarArq(localizacao);
+			//	System.out.println(this.pessoas.toString());
+				if(this.veiculos!=null){
+					return true;
+				}
+			}
+		}catch(Exception e){
+			System.err.println("erro ao carregar arquivo");
 		}
-		return true;
-		
+		return false;
 	}
 
 

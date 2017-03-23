@@ -24,13 +24,20 @@ public class ColecaoLocacao implements Serializable{
 		}*/
 	}
 	
-	public boolean carregarArqDeLocacoes(){
+	public boolean carregarArqDeLocacoes()throws Exception{
 		
-	//	this.locacoes = (ArrayList<Locacao>) id.carregarArq(localizacao);
-		if(this.locacoes==null){
-			return false;
+		try{
+			if(id.verificarArquivo(localizacao)){
+				this.locacoes = (ArrayList<Locacao>) id.carregarArq(localizacao);
+			//	System.out.println(this.pessoas.toString());
+				if(this.locacoes!=null){
+					return true;
+				}	
+			}
+		}catch(Exception e){
+			System.err.println("erro ao carregar arquivo");
 		}
-		return true;
+		return false;
 	}
 
 	public boolean addLocacao(Locacao locacao)throws Exception{
