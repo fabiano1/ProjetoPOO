@@ -36,7 +36,7 @@ public class Principal implements Serializable{
 			System.out.println("Menu ");
 			System.out.println("0- Sair");
 			
-			System.out.println("\nPacientes:");
+			System.out.println("\nPessoa:");
 			System.out.println("1- Adicionar Pessoa");
 			System.out.println("2- Listar Pessoal");
 			System.out.println("3- Listar Clientes");
@@ -398,6 +398,29 @@ public class Principal implements Serializable{
 		}
 		return leitor;
 	}
+	
+	/*
+	 * public static String lerData(Scanner in){
+		System.out.print("Digite no formato (dd/mm/aaaa) ");
+		String r;
+		do{
+			r = in.nextLine();
+			if(r.length()!=10){
+				System.out.print("Formato inválido digite: dd/mm/aaaa");
+			}
+		}while(r.length()!=10);
+		return r;
+
+	}
+	 * static LocalDate getData(){
+
+		DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate sData = LocalDate.parse( lerData(sc) , fmt2 );	
+		return sData;
+	}
+	
+	 */
+	
 	
 	/**
 	 * 

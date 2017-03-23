@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public abstract class Pessoa {
 	private String    nome;
@@ -18,6 +19,9 @@ public abstract class Pessoa {
 		super();
 	}
 	
+	
+	
+	
 	public Pessoa(String nome, Endereco endereco, String cpf, String login, String senha, LocalDate dataNascimento) {
 		super();
 		this.nome = nome;
@@ -26,6 +30,19 @@ public abstract class Pessoa {
 		this.login = login;
 		this.senha = senha;
 		this.dataNascimento = dataNascimento;
+	}
+	
+	/**
+	 * Calcula a idade a partir com base na data atual
+	 **/
+	public int idade(){
+
+
+		LocalDate dataHj= LocalDate.now();
+
+		Period p=Period.between(this.dataNascimento, dataHj);
+		
+		return p.getYears();
 	}
 	
 	
