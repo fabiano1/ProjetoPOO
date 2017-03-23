@@ -31,6 +31,7 @@ public class Principal implements Serializable{
 			System.out.println("3- Listar Clientes");
 			
 		}while(op!=0);*/
+		ic.carregarArqDePessoas();
 		
 		do{
 			System.out.println("Menu ");
@@ -62,7 +63,7 @@ public class Principal implements Serializable{
 			System.out.println("19- Remover Locacao");
 		
 			System.out.print("\nOpção: ");
-//			op = LerNumero();
+			op = lerInteiro();
 			
 			switch(op){
 			
@@ -71,6 +72,7 @@ public class Principal implements Serializable{
 					if(adicionarPessoa()){
 						System.out.println("pessoa adicionada com sucesso"); 
 					}
+					break;
 			
 				case 2:
 					System.out.println(ic.listarPessoa().toString());
@@ -102,47 +104,59 @@ public class Principal implements Serializable{
 					{
 						System.out.println("Veiculo adicionado com sucesso");
 					}
+					break;
 				case 8:
 					System.out.println(ic.listarVeiculos().toString());
+					break;
 				case 9:
 					System.out.println(ic.listarVeiculosDisponiveis().toString());
+					break;
 				case 10:
 					System.out.println(ic.listarAutomoveis().toString());
+					break;
 				case 11:
 					System.out.println(ic.listarMotocicletas().toString());
+					break;
 				case 12:
 					System.out.print("digite o numero da Placa: ");
 					str = sc.nextLine();
 					System.out.println(ic.pesquisarVeiculo(str));
+					break;
 				case 13:
 					System.out.print("digite o numero da Placa: ");
 					str = sc.nextLine();
 					ic.removerVeiculo(str);
-				
+				break;
 				/*Locacao*/
 				case 14:
 					if(adicionarLocacao())
 					{
 						System.out.println("Locacao adicionado com sucesso");
 					}
+					break;
 				case 15:
 					System.out.println(ic.listarLocacoes().toString());
+					break;
 				case 16:
 					System.out.print("digite o id da locacao: ");
 					i = lerInteiro();
 					System.out.println(ic.pesquisarLocacao(i));
+					break;
 				case 17:
 					System.out.print("digite o cpf do cliente: ");
 					str = lerDocumento();
 					//System.out.println(ic.pesquisarLocacao(ic.pesquisarPessoaPeloCPF(str)));
+					break;
 				case 18:
 					System.out.print("digite o numero da  placa do veiculo: ");
 					str = sc.nextLine();
 				//	System.out.println(ic.pesquisarLocacao(ic.pesquisarVeiculo(str)));
+					break;
 				case 19:
 					System.out.print("digite o id da locacao: ");
 					i = lerInteiro();
 					ic.removerLocacao(i);
+					break;
 			}
 		}while(op!=0);
 	}
@@ -165,7 +179,7 @@ public class Principal implements Serializable{
 		
 		if(op==1){
 			lerDadosPessoa(client);
-			System.out.println("digite a cnh:");
+			System.out.print("digite a cnh:");
 			str = lerDocumento();
 			client.setCnh(str);
 			ic.addPessoa(client);
@@ -173,7 +187,7 @@ public class Principal implements Serializable{
 		}
 		if(op==2){
 			lerDadosPessoa(func);
-			System.out.println("digite o cargo:");
+			System.out.print("digite o cargo:");
 			str = sc.nextLine();
 			func.setCargo(str);
 			ic.addPessoa(func);
@@ -189,16 +203,16 @@ public class Principal implements Serializable{
 		Endereco endereco = new Endereco();
 		String data = new String();
 		
-		System.out.print("digite o cpf do paciente: ");
+		System.out.print("digite o cpf da pessoa: ");
 		str = lerDocumento();
-		if(ic.pesquisarPessoaPeloCPF(str)!= null)
+	/*	if(ic.pesquisarPessoaPeloCPF(str)!= null)
 		{
 			System.out.println("pessoa já está cadastrado");
 			return false;
-		}
+		}*/
 		p.setCpf(str);
 		
-		System.out.print("digite o nome do paciente: ");
+		System.out.print("digite o nome da pessoa: ");
 		str = lerNome();
 		p.setNome(str);
 		
@@ -206,7 +220,7 @@ public class Principal implements Serializable{
 		str = lerData();
 	//	p.setDataNascimento(str);
 		
-		System.out.print("digite o endereço do paciente: ");
+		System.out.print("digite o endereço da pessoa: ");
 	
 		System.out.print("Cep: ");
 		str = sc.nextLine();
@@ -274,11 +288,11 @@ public class Principal implements Serializable{
 		
 		System.out.print("digite o numero da placa: ");
 		str = sc.nextLine();
-		if(ic.pesquisarVeiculo(str)!=null)
+	/*	if(ic.pesquisarVeiculo(str)!=null)
 		{
 			System.out.println("veiculo já existe");
 			return false;
-		}
+		}*/
 		
 		System.out.print("digite a placa: ");
 		

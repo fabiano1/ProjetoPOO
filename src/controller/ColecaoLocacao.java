@@ -1,16 +1,36 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
-public class ColecaoLocacao {
+import dao.ControllerDao;
+import dao.Idao;
 
+public class ColecaoLocacao implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<Locacao> locacoes;
+	private Idao id=new ControllerDao();
+	private static String localizacao = new String("locacoes.obj");
 
 	public ColecaoLocacao() {
 
-		this.locacoes=new ArrayList<Locacao>();
+		this.locacoes = new ArrayList<Locacao>();
+		/*if(id.verificarArquivo(localizacao)){
+			carregarArqDeLocacoes();
+		}*/
+	}
+	
+	public boolean carregarArqDeLocacoes(){
+		
+	//	this.locacoes = (ArrayList<Locacao>) id.carregarArq(localizacao);
+		if(this.locacoes==null){
+			return false;
+		}
+		return true;
 	}
 
 	public boolean addLocacao(Locacao locacao)throws Exception{
@@ -18,8 +38,9 @@ public class ColecaoLocacao {
 		try{
 			if (!locacao.equals(locacao)){
 				locacoes.add(locacao);
+	//			id.salvarEmArq(this.locacoes, localizacao);
 				return true;
-		}
+			}
 		}catch(Exception e){
 			System.err.println("erro ao adicionar locacao");
 		}
@@ -33,6 +54,7 @@ public class ColecaoLocacao {
 			for (Locacao locacao : locacoes) {
 				if (locacao.getId()==id){
 					locacoes.remove(id);
+	//				this.id.salvarEmArq(this.locacoes, localizacao);
 					return true;
 				}
 			}

@@ -165,7 +165,7 @@ public class Endereco {
 	}
 	@Override
 	public String toString() {
-		return "Funcionario [estado=" + estado + ", Cidade=" + Cidade + ", Bairro=" + Bairro + ", cep=" + cep + ", rua="
+		return "Endereco [estado=" + estado + ", Cidade=" + Cidade + ", Bairro=" + Bairro + ", cep=" + cep + ", rua="
 				+ rua + ", numero=" + numero + "]";
 	}
 	

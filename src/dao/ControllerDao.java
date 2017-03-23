@@ -13,15 +13,15 @@ public class ControllerDao implements Idao, Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public boolean salvarEmArq(ArrayList<Pessoa> p) {
+	public boolean salvarEmArq(ArrayList<Pessoa> list, String str) {
 		
 			 
 	           try {
-	             FileOutputStream saveFile = new FileOutputStream("bd.dat");
+	             FileOutputStream saveFile = new FileOutputStream(str);
 	             ObjectOutputStream stream = new ObjectOutputStream(saveFile);
 	             
 	              // salva o objeto
-	             stream.writeObject(p);
+	             stream.writeObject(list);
 	 
 	             stream.close();
 	           } catch (Exception exc) {
@@ -32,26 +32,41 @@ public class ControllerDao implements Idao, Serializable{
 	}
 
 	@Override
-	public ArrayList<Pessoa> carregarPessoas() {
-					 
-		ArrayList<Pessoa> list = null;
+	public ArrayList<Pessoa> carregarArq(String str) {
+
+		Object obj = null;
+		ArrayList<Pessoa> list;
            
-            try {
-                   FileInputStream restFile = new FileInputStream("bd.dat");
-                   
-                   ObjectInputStream stream = new ObjectInputStream(restFile);
-
-                   // recupera o objeto
+            try{
+            	File file = new File(str);
+            	if(file.exists()){
+            		FileInputStream restFile = new FileInputStream(str);
                   
-                   list = (ArrayList<Pessoa>) stream.readObject();
+            		ObjectInputStream stream = new ObjectInputStream(restFile);
 
-                   stream.close();
+            		// recupera o objeto
+                  
+            	//	obj = (Object) stream.readObject();
+            		list = (ArrayList<Pessoa>) stream.readObject();
+
+            		stream.close();
+            		return list;
+            	}
+            	return null;
             } catch (Exception e) {
                    e.printStackTrace();
+                   return null;
             }
-
-            return list;
      
+	}
+	
+	public boolean verificarArquivo(String str){
+		File file = new File(str);
+		
+		if(file.exists()){
+			return true;
+		}
+		return false;
 	}
 	/*
 	File arquivo = new File("CAMINHO DO ARQUIVO.EXTENSÃO");

@@ -1,7 +1,11 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import dao.ControllerDao;
 import dao.Idao;
 
@@ -11,24 +15,51 @@ public class ColecaoPessoa implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private ArrayList<Pessoa> pessoas;
 	private Idao id=new ControllerDao();
-	private ArrayList<Pessoa> pessoas=id.carregarPessoas();
+	private static String localizacao = new String("pessoas.obj");
 	
 	public ColecaoPessoa(ArrayList<Pessoa> pessoas){
 		this.pessoas = pessoas;
 	}
 
 	public ColecaoPessoa(){
-		
-	//	this.pessoa = (ArrayList<Pessoa>)id.carregarArq("pessoa.txt");
 		this.pessoas = new ArrayList<Pessoa>();
 	}
+	
+	public void recuperarArquivo() throws IOException, ClassNotFoundException{
+		try{
+			FileInputStream file = new FileInputStream(localizacao); 
+			ObjectInputStream stream = new ObjectInputStream(file);
+			ArrayList<Pessoa> readObject = (ArrayList<Pessoa>) stream.readObject();
+			this.pessoas = readObject;
+			stream.close();
+		}catch(IOException io){
+			System.err.println("erro ao obter arquivo");
+		}
+	}
 
+	public boolean carregarArqDePessoas()throws Exception{
+		
+		try{
+			if(id.verificarArquivo(localizacao)){
+				this.pessoas = (ArrayList<Pessoa>)id.carregarArq(localizacao);
+				System.out.println(this.pessoas.toString());
+				if(this.pessoas==null){
+					return true;
+				}	
+			}
+		}catch(Exception e){
+			System.err.println("erro ao carregar arquivo");
+		}
+		return false;
+	}
+	
 	public boolean addPessoa(Pessoa p)throws Exception{
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
-				id.salvarEmArq(pessoas);
+				id.salvarEmArq(this.pessoas,localizacao);
 				return true;
 
 			} catch (Exception e) {
@@ -45,9 +76,9 @@ public class ColecaoPessoa implements Serializable{
 
 	public ArrayList<Pessoa> listarPessoa()throws Exception{
 		try{
-			if(!pessoas.isEmpty()){
+		//	if(!pessoas.isEmpty()){
 				return pessoas;
-			}
+		//	}
 		}catch(Exception e){
 			System.err.println("erro ao listar pessoas");
 		}
@@ -59,7 +90,7 @@ public class ColecaoPessoa implements Serializable{
 		try{
 			ArrayList<Cliente> clientes=new ArrayList<Cliente>();
 
-			for (Pessoa pessoa : id.carregarPessoas()) {
+			for (Pessoa pessoa : this.pessoas) {
 				if(pessoa instanceof Cliente){
 					clientes.add((Cliente) pessoa);
 				}
@@ -76,7 +107,7 @@ public class ColecaoPessoa implements Serializable{
 		try{
 			ArrayList<Funcionario> func =new ArrayList<Funcionario>();
 
-			for (Pessoa pessoa : id.carregarPessoas()) {
+			for (Pessoa pessoa : this.pessoas) {
 
 				if(pessoa instanceof Funcionario){
 					func.add((Funcionario) pessoa);
@@ -116,7 +147,7 @@ public class ColecaoPessoa implements Serializable{
 
 					try {
 						
-						id.salvarEmArq(pessoas);
+						id.salvarEmArq(this.pessoas,localizacao);
 						return true;
 					} catch (Exception e) {
 						// TODO: handle exception

@@ -1,12 +1,18 @@
 package controller;
 
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import dao.ControllerDao;
 import dao.Idao;
 
-public class ColecaoVeiculo {
+public class ColecaoVeiculo implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<Veiculo> veiculos;
+	private Idao id=new ControllerDao();
+	private static String localizacao = new String("veiculos.obj");
 	
 	/*
 	stream = id.recuparArq(this.veiculo,"veiculos.txt");
@@ -15,15 +21,24 @@ public class ColecaoVeiculo {
 	
 	public ColecaoVeiculo(ArrayList<Veiculo> veiculo) {
 		this.veiculos = veiculo;
+	//	id.salvarEmArq(this.veiculos, localizacao);
 	}
 
-	public ColecaoVeiculo() {
-		/*
-		 *	Arraylist<Veiculo> list = new ArrayList<Veiculo>();
-			list = id.recuparArq(this.veiculo,"veiculos.txt");
-			this.veiculo = (ArrayList<Veiculo>)list;
-		*/
+	public ColecaoVeiculo() {	 	
 		this.veiculos = new ArrayList<Veiculo>();
+		if(id.verificarArquivo(localizacao)){
+			carregarArqDeVeiculos();
+		}
+	}
+	
+	public boolean carregarArqDeVeiculos(){
+		
+	//	this.veiculos = (ArrayList<Veiculo>) id.carregarArq(localizacao);
+		if(this.veiculos==null){
+			return false;
+		}
+		return true;
+		
 	}
 
 
@@ -31,6 +46,7 @@ public class ColecaoVeiculo {
 		try{
 			if(!veiculos.contains(v)){
 				veiculos.add(v);
+		//		id.salvarEmArq(this.veiculos, localizacao);
 				return true;
 			}
 		}catch(Exception e){
@@ -46,9 +62,9 @@ public class ColecaoVeiculo {
 
 	public ArrayList<Veiculo> listarVeiculos()throws Exception{
 		try{
-			if(!this.veiculos.isEmpty()){
+			//if(!this.veiculos.isEmpty()){
 				return this.veiculos;
-			}
+			//}
 		}catch(Exception e){
 			System.err.println("erro ao listar veiculos");
 		}
@@ -116,7 +132,7 @@ public class ColecaoVeiculo {
 			for (Veiculo v : this.veiculos) {
 				if(v.getPlaca().getNumerosEletras().equalsIgnoreCase(placa)){
 					this.veiculos.remove(v);
-	//				id.salvarEmrArq(this.veiculo,"veiculos.txt");
+		//			id.salvarEmArq(this.veiculos,localizacao);
 					return true;
 				}
 			}

@@ -17,6 +17,12 @@ public class Controller implements Icontroller, Serializable{
 	 * @throws Exception ***************
 
 	 **/
+	
+	public boolean carregarArqDePessoas() throws Exception{
+		cp.recuperarArquivo();
+		return true;
+	}
+	
 	@Override
 	public boolean addPessoa(Pessoa p) throws Exception {
 
