@@ -21,9 +21,10 @@ public class ControllerDao implements Idao, Serializable{
 	             ObjectOutputStream stream = new ObjectOutputStream(saveFile);
 	             
 	              // salva o objeto
-	             System.out.println(list+"\ncontrollerDao- salvar\n");
 	             stream.writeObject(list);
-	 
+	         //  System.out.println(list+"\ncontrollerDao- salvar\n");
+	         //  System.out.println(stream+"\nobject de salvar arquivo\n");
+	             
 	             stream.close();
 	           } catch (Exception exc) {
 	             exc.printStackTrace();
@@ -49,13 +50,15 @@ public class ControllerDao implements Idao, Serializable{
                   
             	//	obj = (Object) stream.readObject();
             		list = (ArrayList<Pessoa>) stream.readObject();
-            		System.out.println(list+"\ncontrollerdao - carregar arquivo\n");
+            	//	System.out.println(list+"\ncontrollerdao - carregar arquivo\n");
 
             		stream.close();
+            		return list;
             	}
             	else{
             		FileOutputStream saveFile = new FileOutputStream("bd.dat",true);
    	             	ObjectOutputStream stream = new ObjectOutputStream(saveFile);
+   	             	return list;
             	}
             	
             } catch (Exception e) {

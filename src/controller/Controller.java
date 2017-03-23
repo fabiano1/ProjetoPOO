@@ -18,12 +18,12 @@ public class Controller implements Icontroller, Serializable{
 
 	 **/
 	
-/*	public boolean carregarArqDePessoas() throws Exception{
+	public boolean carregarArqDePessoas() throws Exception{
 		if(cp.carregarArqDePessoas()){
 			return true;
 		}
 		return false;
-	}*/
+	}
 	
 	@Override
 	public boolean addPessoa(Pessoa p) throws Exception {

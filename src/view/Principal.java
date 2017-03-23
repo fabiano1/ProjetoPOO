@@ -32,9 +32,9 @@ public class Principal implements Serializable{
 			
 		}while(op!=0);*/
 		
-		/*if(!ic.carregarArqDePessoas()){
+		if(!ic.carregarArqDePessoas()){
 			System.out.println("Arquivo não foi carregado");
-		}*/
+		}
 		
 		do{
 			System.out.println("Menu ");
@@ -190,9 +190,9 @@ public class Principal implements Serializable{
 			str = sc.nextLine();
 			client.setCategoriaCnh(str);
 			
-			System.out.println(client);
+		//	System.out.println(client);
 			ic.addPessoa(client);
-			System.out.println(client);
+		//	System.out.println(client);
 			return true;
 		}
 		if(op==2){

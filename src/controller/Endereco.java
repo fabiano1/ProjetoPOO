@@ -1,6 +1,11 @@
 package controller;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String estado;
 	private String Cidade;
 	private String Bairro;

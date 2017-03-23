@@ -17,7 +17,7 @@ public class ColecaoPessoa implements Serializable{
 	
 	private Idao id=new ControllerDao();
 	private static String localizacao = new String("pessoas.txt");
-	private ArrayList<Pessoa> pessoas = id.carregarArq("bd.dat");
+	private ArrayList<Pessoa> pessoas; /*= id.carregarArq("bd.dat");*/
 	
 	public ColecaoPessoa(ArrayList<Pessoa> pessoas){
 		this.pessoas = pessoas;
@@ -27,7 +27,7 @@ public class ColecaoPessoa implements Serializable{
 		this.pessoas = new ArrayList<Pessoa>();
 	}
 
-	/*	
+	
 	public void recuperarArquivo() throws IOException, ClassNotFoundException{
 		try{
 			FileInputStream file = new FileInputStream(localizacao); 
@@ -43,24 +43,24 @@ public class ColecaoPessoa implements Serializable{
 	public boolean carregarArqDePessoas()throws Exception{
 		
 		try{
-//			if(id.verificarArquivo(localizacao)){
-//				this.pessoas = id.carregarArq(localizacao);
-				System.out.println(this.pessoas.toString());
+			if(id.verificarArquivo(localizacao)){
+				this.pessoas = id.carregarArq(localizacao);
+			//	System.out.println(this.pessoas.toString());
 				if(this.pessoas!=null){
 					return true;
 				}	
-//			}
+			}
 		}catch(Exception e){
 			System.err.println("erro ao carregar arquivo");
 		}
 		return false;
-	}*/
+	}
 	
 	public boolean addPessoa(Pessoa p)throws Exception{
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
-				this.id.salvarEmArq(this.pessoas,localizacao);
+				id.salvarEmArq(this.pessoas,localizacao);
 				return true;
 
 			} catch (Exception e) {
@@ -78,8 +78,8 @@ public class ColecaoPessoa implements Serializable{
 	public ArrayList<Pessoa> listarPessoa()throws Exception{
 		try{
 		//	if(!pessoas.isEmpty()){
-		//		this.pessoas = this.id.carregarArq(localizacao);
-				return pessoas;
+				this.pessoas = id.carregarArq(localizacao);
+				return this.pessoas;
 		//	}
 		}catch(Exception e){
 			System.err.println("erro ao listar pessoas");
@@ -92,7 +92,7 @@ public class ColecaoPessoa implements Serializable{
 		try{
 			ArrayList<Cliente> clientes=new ArrayList<Cliente>();
 
-			for (Pessoa pessoa : this.pessoas) {
+			for (Pessoa pessoa : id.carregarArq("bd.dat")) {
 				if(pessoa instanceof Cliente){
 					clientes.add((Cliente) pessoa);
 				}
@@ -149,7 +149,7 @@ public class ColecaoPessoa implements Serializable{
 
 					try {
 						
-						this.id.salvarEmArq(this.pessoas,localizacao);
+						id.salvarEmArq(this.pessoas,localizacao);
 						return true;
 					} catch (Exception e) {
 						// TODO: handle exception
