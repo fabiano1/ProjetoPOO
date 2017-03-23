@@ -19,7 +19,7 @@ public class Controller implements Icontroller, Serializable{
 	 **/
 	
 	public boolean carregarArqDePessoas() throws Exception{
-		cp.recuperarArquivo();
+		cp.carregarArqDePessoas();
 		return true;
 	}
 	
