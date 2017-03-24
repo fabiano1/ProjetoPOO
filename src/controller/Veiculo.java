@@ -3,17 +3,17 @@ package controller;
 import java.io.Serializable;
 
 public abstract class Veiculo implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private Placa placa;
 	private boolean disponibilidade;
 	private String marca;
 	private String modelo;
 	private double precoPorHra;
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 
 	 */
@@ -30,7 +30,7 @@ public abstract class Veiculo implements Serializable {
 		this.modelo = modelo;
 		this.precoPorHra = precoPorHra;
 	}
-	
+
 	public Placa getPlaca() {
 		return placa;
 	}
@@ -62,8 +62,8 @@ public abstract class Veiculo implements Serializable {
 		this.precoPorHra = precoPorHra;
 	}
 
-	
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,11 +111,9 @@ public abstract class Veiculo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\nVeiculo [placa=" + placa + ", disponibilidade=" + disponibilidade + ", marca=" + marca + ", modelo="
+		return "\nVeiculo [placa=" + placa +  "Disponilidade=" +disponibilidade+", marca=" + marca + ", modelo="
 				+ modelo + ", precoPorHra=" + precoPorHra + "]";
 	}
-	
-	
-	
+
 
 }

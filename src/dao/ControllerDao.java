@@ -77,12 +77,5 @@ public class ControllerDao implements Idao, Serializable{
 		}
 		return false;
 	}
-	/*
-	File arquivo = new File("CAMINHO DO ARQUIVO.EXTENSÃO");
-	if(arquivo.exists()){
-	    //O ARQUIVO EXISTE
-	}else{
-	    //O ARQUIVO NÃO EXISTE
-	}
-*/
+	
 }

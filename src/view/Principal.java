@@ -65,8 +65,8 @@ public class Principal implements Serializable{
 			System.out.println("18- Procurar Locacao por veiculo");
 			System.out.println("19- Remover Locacao");
 		 */
-			System.out.println("___________________________________________________________________________________________________\n|"
-					+" |                                        Menu                                                    |");
+			System.out.println("___________________________________________________________________________________________________\n"
+					+"|                                       Menu                                                      |");
 			System.out.println("|\n| Pessoa:                        Veiculo:                        Locacao:                         |\n|                                                                                                 |\n|"
 					+" 1- Adicionar Pessoa            7- Adicionar Veiculo             14- Adiconar Locacao            |\n|"                                   
 					+" 2- Listar Pessoal              8- Listar Veiculos               15- Listar Locacoes             |\n|"
@@ -77,7 +77,7 @@ public class Principal implements Serializable{
 					+"|                                13-Remover Veiculo                                               |\n"
 					+"|                                                                                                 |\n|                                                                                                 |\n|"
 					+"                              0- Sair                                                            |\n|"   
-					+ "                                                                                                 |\n|"
+					+"                                                                                                 |\n|"
 					+"_________________________________________________________________________________________________|");
 
 
@@ -350,6 +350,7 @@ public class Principal implements Serializable{
 
 		System.out.print("digite o preco por hora ");
 		d = lerDouble();
+		v.setDisponibilidade(true);
 		v.setPrecoPorHra(d);
 
 
