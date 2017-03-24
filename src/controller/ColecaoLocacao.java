@@ -45,7 +45,7 @@ public class ColecaoLocacao implements Serializable{
 		try{
 			if (!locacao.equals(locacao)){
 				locacoes.add(locacao);
-	//			id.salvarEmArq(this.locacoes, localizacao);
+				id.salvarEmArq(this.locacoes, localizacao);
 				return true;
 			}
 		}catch(Exception e){
@@ -61,7 +61,7 @@ public class ColecaoLocacao implements Serializable{
 			for (Locacao locacao : locacoes) {
 				if (locacao.getId()==id){
 					locacoes.remove(id);
-	//				this.id.salvarEmArq(this.locacoes, localizacao);
+					this.id.salvarEmArq(this.locacoes, localizacao);
 					return true;
 				}
 			}

@@ -50,7 +50,7 @@ public class ColecaoVeiculo implements Serializable{
 		try{
 			if(!veiculos.contains(v)){
 				veiculos.add(v);
-		//		id.salvarEmArq(this.veiculos, localizacao);
+				id.salvarEmArq(this.veiculos, localizacao);
 				return true;
 			}
 		}catch(Exception e){
@@ -136,7 +136,7 @@ public class ColecaoVeiculo implements Serializable{
 			for (Veiculo v : this.veiculos) {
 				if(v.getPlaca().getNumerosEletras().equalsIgnoreCase(placa)){
 					this.veiculos.remove(v);
-		//			id.salvarEmArq(this.veiculos,localizacao);
+					id.salvarEmArq(this.veiculos,localizacao);
 					return true;
 				}
 			}
