@@ -16,7 +16,7 @@ public class ColecaoPessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Idao id=new ControllerDao();
-	private static String localizacao = new String("pessoas.txt");
+	private static String localizacao = new String("pessoas.obj");
 	private ArrayList<Pessoa> pessoas; /*= id.carregarArq("bd.dat");*/
 	
 	public ColecaoPessoa(ArrayList<Pessoa> pessoas){
