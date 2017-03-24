@@ -28,7 +28,7 @@ public class ColecaoPessoa implements Serializable{
 	}
 
 	
-	public void recuperarArquivo() throws IOException, ClassNotFoundException{
+/*	public void recuperarArquivo() throws IOException, ClassNotFoundException{
 		try{
 			FileInputStream file = new FileInputStream(localizacao); 
 			ObjectInputStream stream = new ObjectInputStream(file);
@@ -38,7 +38,7 @@ public class ColecaoPessoa implements Serializable{
 		}catch(IOException io){
 			System.err.println("erro ao obter arquivo");
 		}
-	}
+	}*/
 
 	public boolean carregarArqDePessoas()throws Exception{
 		
