@@ -36,7 +36,7 @@ public class Principal implements Serializable{
 			System.out.println("Arquivo não foi carregado");
 		}
 		
-		do{
+		do{/*
 			System.out.println("Menu ");
 			System.out.println("0- Sair");
 			
@@ -64,7 +64,23 @@ public class Principal implements Serializable{
 			System.out.println("17- Procurar Locacao por Pessoa");
 			System.out.println("18- Procurar Locacao por veiculo");
 			System.out.println("19- Remover Locacao");
-		
+		*/
+			System.out.println("___________________________________________________________________________________________________\n|"
+					+" |                                        Menu                                                    |");
+				System.out.println("|\n| Pessoa:                        Veiculo:                        Locacao:                         |\n|                                                                                                 |\n|"
+							+" 1- Adicionar Pessoa            7- Adicionar Veiculo             14- Adiconar Locacao            |\n|"                                   
+							+" 2- Listar Pessoal              8- Listar Veiculos               15- Listar Locacoes             |\n|"
+							+" 3- Listar Clientes             9- Listar Veiculos Disponiveis   16- Procurar Locacao por ID     |\n|"
+							+" 4- Listar Funcionarios         10-Listar Automoveis             17- Procurar Locacao por Pessoa |\n|"
+							+" 5- Pesquisar Pessoa            11-Listar Motocicletas           18- Procurar Locacao por veiculo|\n|"
+							+" 6- Remover Pessoa              12-Procurar Veiculo              19- Remover Locacao             |\n"
+							+"|                                13-Remover Veiculo                                               |\n"
+							+"|                                                                                                 |\n|                                                                                                 |\n|"
+							+"                              0- Sair                                                            |\n|"   
+							+ "                                                                                                 |\n|"
+							+"_________________________________________________________________________________________________|");
+
+
 			System.out.print("\nOpção: ");
 			op = lerInteiro();
 			
