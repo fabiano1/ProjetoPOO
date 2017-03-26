@@ -157,7 +157,6 @@ public class Controller implements Icontroller, Serializable{
 
 	@Override
 	public ArrayList<Locacao> listarLocacoes() throws Exception{
-
 		return cl.listarLocacoes();
 	}
 

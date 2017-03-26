@@ -381,7 +381,7 @@ public class Principal implements Serializable{
 		/**
 		 * Verifica se um veículo está disponível para locação
 		 */
-		boolean v=false;
+		boolean v=true;
 		while(v){
 			System.out.print("digite o numero da placa do veiculo: ");
 			str = sc.nextLine();
@@ -393,9 +393,10 @@ public class Principal implements Serializable{
 			}else{
 				locacao.setVeiculo(ic.pesquisarVeiculo(str));
 				ic.pesquisarVeiculo(str).setDisponibilidade(false);
-				v=true;
+				ic.realizarLocacao(locacao);
+				System.out.println(locacao.toString());
+				v=false;
 			}
-
 		}
 
 		return true;

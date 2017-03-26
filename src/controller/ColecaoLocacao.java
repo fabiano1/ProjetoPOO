@@ -43,7 +43,7 @@ public class ColecaoLocacao implements Serializable{
 	public boolean addLocacao(Locacao locacao)throws Exception{
 		
 		try{
-			if (!locacao.equals(locacao)){
+			if (!locacoes.contains(locacao)){
 				locacoes.add(locacao);
 				id.salvarEmArq(this.locacoes, localizacao);
 				return true;
@@ -76,6 +76,7 @@ public class ColecaoLocacao implements Serializable{
 	
 	
 	public ArrayList<Locacao> listarLocacoes(){
+		
 		return this.locacoes;
 			
 	}
