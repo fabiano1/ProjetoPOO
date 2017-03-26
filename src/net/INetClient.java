@@ -4,7 +4,7 @@ import java.util.*;
 
 public interface INetClient {
 	
-	public boolean enviarObject(Object obj);
-	public ArrayList receberObject(Object obj);
+	public boolean enviarObject(Object obj)throws Exception;
+	public ArrayList<Object> receberObject(String arquivo) throws Exception;
 
 }
