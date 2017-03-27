@@ -1,4 +1,4 @@
-package net;
+package netServer;
 
 import java.net.Socket;
 

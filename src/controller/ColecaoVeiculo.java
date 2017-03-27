@@ -5,12 +5,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import dao.ControllerDao;
 import dao.Idao;
+import net.*;
 
 public class ColecaoVeiculo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Veiculo> veiculos;
+	private INetClient iNet = new ControllerNetClient();
 	private Idao id=new ControllerDao();
 	private static String localizacao = new String("veiculos.obj");
 	
@@ -32,6 +34,10 @@ public class ColecaoVeiculo implements Serializable{
 	public boolean carregarArqDeVeiculos()throws Exception{
 		
 		try{
+		//	this.veiculos = (ArrayList<Veiculo>) iNet.receberObject(localizacao);
+		//	if(this.veiculos!=null){
+		//		return true;
+		//	}
 			if(id.verificarArquivo(localizacao)){
 				this.veiculos = (ArrayList<Veiculo>) id.carregarArq(localizacao);
 			//	System.out.println(this.pessoas.toString());
@@ -51,6 +57,7 @@ public class ColecaoVeiculo implements Serializable{
 			if(!veiculos.contains(v)){
 				veiculos.add(v);
 				id.salvarEmArq(this.veiculos, localizacao);
+			//	iNet.enviarObject(this.veiculos, localizacao);
 				return true;
 			}
 		}catch(Exception e){
@@ -136,6 +143,7 @@ public class ColecaoVeiculo implements Serializable{
 			for (Veiculo v : this.veiculos) {
 				if(v.getPlaca().getNumerosEletras().equalsIgnoreCase(placa)){
 					this.veiculos.remove(v);
+				//	iNet.enviarObject(this.pessoas, localizacao);
 					id.salvarEmArq(this.veiculos,localizacao);
 					return true;
 				}
