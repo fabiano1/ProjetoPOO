@@ -1,7 +1,7 @@
 package controller;
-
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Locacao implements Serializable {
 	
@@ -11,13 +11,17 @@ public class Locacao implements Serializable {
 	private LocalDate dataDevolucao;
 	private Pessoa pessoa;
 	private Veiculo veiculo;
+	
 		
 	
 	/**
 	 * 
 	 */
 	public Locacao() {
+		
 		super();
+		
+		id++;
 	}
 	
 	public Locacao(LocalDate dataRetirada, LocalDate dataDevolucao, Pessoa pessoa, Veiculo veiculo) {
@@ -26,6 +30,16 @@ public class Locacao implements Serializable {
 		this.pessoa = pessoa;
 		this.veiculo = veiculo;
 		id++;
+	}
+	/**
+	 * Calcula Valor da Locação
+	 */
+	public  double calcValorLoc(){
+				
+		Period p=Period.between(dataRetirada,dataDevolucao);
+		
+		
+		return veiculo.getPrecoPorHra()*p.getDays();
 	}
 	public int getId() {
 		return id;
@@ -99,7 +113,8 @@ public class Locacao implements Serializable {
 	@Override
 	public String toString() {
 		return "\nLocacao [dataRetirada=" + dataRetirada + ", dataDevolucao=" + dataDevolucao + ", pessoa[nome=" + pessoa.getNome()+ 
-				", CPF=" + pessoa.getCpf() + ", veiculo=" + veiculo.getPlaca().getNumerosEletras() + "]\n";
+				", CPF=" + pessoa.getCpf() + ", Veiculo=" + veiculo.toString() + " Id da Locação: "+this.id+
+				" Valor Da Localizacao "+calcValorLoc()+ "]\n";
 	}
 	
 	

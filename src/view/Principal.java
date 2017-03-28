@@ -3,6 +3,8 @@ package view;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -21,7 +23,7 @@ public class Principal implements Serializable{
 		int op = 0, i=0;
 		Scanner sc = new Scanner(System.in);
 		String str = new String();
-		Endereco endereço = new Endereco();
+		Endereco endereco = new Endereco();
 
 		/*do{
 			System.out.println("Menu ");
@@ -243,7 +245,8 @@ public class Principal implements Serializable{
 		p.setNome(str);
 
 		System.out.print("digite a data de Nascimento: ");
-		str = lerData();
+		//str = lerData(sc);
+		p.setDataNascimento(getData());
 		//	p.setDataNascimento(str);
 
 		System.out.print("digite o login: ");
@@ -362,12 +365,19 @@ public class Principal implements Serializable{
 		String str;
 		Scanner sc = new Scanner(System.in);
 		Placa placa = new Placa();
-		String data = new String();
+		//String data = new String();
+		LocalDate dataDev,dataRet;
 		Locacao locacao = new Locacao();
 		double d = 0;
 
-		System.out.print("digite a data de devolucao: ");
-		data = lerData();
+		System.out.print("Digite a data de devolucao: ");
+		//data = lerData(sc);
+		dataDev=getData();
+		locacao.setDataDevolucao(dataDev);
+		
+	   System.out.print("Digite a data de Retidada: ");
+	   dataRet=getData();
+	   locacao.setDataRetirada(dataRet);
 		//	locacao.setDataRetirada(data);
 
 		System.out.print("digite o cpf do cliente: ");
@@ -388,7 +398,7 @@ public class Principal implements Serializable{
 
 			if(!ic.pesquisarVeiculo(str).isDisponibilidade()){
 				System.out.println(ic.pesquisarVeiculo(str).toString()+ "Não está Disponível!\n");
-				
+				return true;
 				
 			}else{
 				locacao.setVeiculo(ic.pesquisarVeiculo(str));
@@ -420,7 +430,7 @@ public class Principal implements Serializable{
 		if( !sc.hasNextDouble())
 		{
 			sc.next();
-			System.out.printf("\nvoce deve digitar um numero: ");
+			System.out.printf("\nvoce deve digitar um Real: ");
 			return lerDouble();
 		}
 		return sc.nextDouble();
@@ -463,27 +473,35 @@ public class Principal implements Serializable{
 		return leitor;
 	}
 
-	/*
-	 * public static String lerData(Scanner in){
+	
+	/*  public static String lerData(Scanner in){
 		System.out.print("Digite no formato (dd/mm/aaaa) ");
-		String r;
+		String r = "";
 		do{
 			r = in.nextLine();
+			
 			if(r.length()!=10){
 				System.out.print("Formato inválido digite: dd/mm/aaaa");
 			}
 		}while(r.length()!=10);
 		return r;
 
-	}
-	 * static LocalDate getData(){
+	}*/
+	 static LocalDate getData(){
 
 		DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate sData = LocalDate.parse( lerData(sc) , fmt2 );	
+		Scanner sc = null;
+		LocalDate sData = null;
+		try {
+			sData = LocalDate.parse( lerData() , fmt2 );
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		return sData;
 	}
 
-	 */
+	 
 
 
 	/**
