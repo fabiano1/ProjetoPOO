@@ -12,14 +12,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import com.sun.jndi.ldap.sasl.SaslInputStream;
 import com.sun.org.apache.xml.internal.security.utils.SignerOutputStream;
 
-public class ControllerNetClient implements INetClient, Serializable {
+import  controller.*;
 
+public class ControllerNetClient implements INetClient, Serializable {
+	
 	@Override
-	public boolean enviarObject(Object obj) throws Exception{
+	public boolean enviarObject(Object obj, String fileName) throws Exception{
 		
 		try{
 //			ArrayList<String>  array = new ArrayList<String>();
@@ -37,6 +38,7 @@ public class ControllerNetClient implements INetClient, Serializable {
 			PrintWriter pout = new PrintWriter(sock.getOutputStream(), true);
 			String op = new String("1");
 			pout.println(op);
+			pout.flush();
 			
 			/**	
 			 * 	Menu de Dados da segunda opcao recebida para carrgerarquivos:
@@ -49,22 +51,26 @@ public class ControllerNetClient implements INetClient, Serializable {
 			op = "0";
 			
 		/*Segunda etapa: resposta a segunda opcao do tipo de arquivo a enviar*/
-			if(obj instanceof ArrayList/*<Pessoa>*/){
+			if(fileName.equals("pessoas.obj")){
 				op = "1";
 			}
-			if(obj instanceof ArrayList/*<Veiculo>*/){
+			if(fileName.equals("veiculos.obj")){
 				op = "2";
 			}
-			if(obj instanceof ArrayList/*<Locacao>*/){
+			if(fileName.equals("locacoes.obj")){
 				op = "3";
+			}else{
+				sock.close();
+				return true;
 			}
 			pout.println(op);
-			
+			pout.flush();
 		//	SignerOutputStream sc1 = null;
 		//	sc1.write(1);
 			
 			ObjectOutputStream outStream = new ObjectOutputStream(sock.getOutputStream());
 			outStream.writeObject(obj);
+			outStream.flush();
 			
 			sock.close();
 			
@@ -75,9 +81,9 @@ public class ControllerNetClient implements INetClient, Serializable {
 	}
 
 	@Override
-	public ArrayList<Object> receberObject(String arquivo)throws Exception{
-		ArrayList<Object> array = new ArrayList();
-	
+	public Object receberObject(String arquivo)throws Exception{
+		Object obj = new Object();
+		
 		try{
 			Socket sock = new Socket("127.0.0.1",6013);
 		
@@ -92,6 +98,7 @@ public class ControllerNetClient implements INetClient, Serializable {
 			PrintWriter pout = new PrintWriter(sock.getOutputStream(), true);
 			String op = new String("2");
 			pout.println(op);
+			pout.flush();
 			
 			/**	
 			 * 	Menu de Dados da segunda opcao recebida para carrgerarquivos:
@@ -113,17 +120,18 @@ public class ControllerNetClient implements INetClient, Serializable {
 				op = "3";
 			}
 			pout.println(op);
+			pout.flush();
 			
 			ObjectInputStream inStream = new ObjectInputStream(sock.getInputStream());
-			array = (ArrayList<Object>) inStream.readObject();
+			obj = (Object) inStream.readObject();
 			
 			sock.close();
-			return array;
+			return obj;
 		}catch(Exception e){
 			System.err.println("erro ao recebr objeto");
 		}
 		
-		return array;
+		return obj;
 	}
 
 	

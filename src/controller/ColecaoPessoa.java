@@ -6,8 +6,10 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import dao.ControllerDao;
 import dao.Idao;
+import net.*;
 
 public class ColecaoPessoa implements Serializable{
 	/**
@@ -15,8 +17,10 @@ public class ColecaoPessoa implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private INetClient iNet = new ControllerNetClient();
 	private Idao id=new ControllerDao();
 	private static String localizacao = new String("pessoas.obj");
+	
 	private ArrayList<Pessoa> pessoas; /*= id.carregarArq("bd.dat");*/
 	
 	public ColecaoPessoa(ArrayList<Pessoa> pessoas){
@@ -43,12 +47,18 @@ public class ColecaoPessoa implements Serializable{
 	public boolean carregarArqDePessoas()throws Exception{
 		
 		try{
+		/*	this.pessoas = (ArrayList<Pessoa>) iNet.receberObject(localizacao);
+		 * 	System.out.println(this.pessoas.toString());
+			if(this.pessoas!=null){
+				return true;
+			}*/
 			if(id.verificarArquivo(localizacao)){
 				this.pessoas = (ArrayList<Pessoa>) id.carregarArq(localizacao);
 			//	System.out.println(this.pessoas.toString());
 				if(this.pessoas!=null){
 					return true;
-				}	
+				}
+
 			}
 		}catch(Exception e){
 			System.err.println("erro ao carregar arquivo");
@@ -60,6 +70,7 @@ public class ColecaoPessoa implements Serializable{
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
+			//	iNet.enviarObject(this.pessoas, localizacao);
 				id.salvarEmArq(this.pessoas,localizacao);
 				return true;
 
@@ -148,7 +159,7 @@ public class ColecaoPessoa implements Serializable{
 					pessoas.remove(pessoa);
 
 					try {
-						
+				//		iNet.enviarObject(this.pessoas, localizacao);
 						id.salvarEmArq(this.pessoas,localizacao);
 						return true;
 					} catch (Exception e) {

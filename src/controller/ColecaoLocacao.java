@@ -7,12 +7,14 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import dao.ControllerDao;
 import dao.Idao;
+import net.*;
 
 public class ColecaoLocacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Locacao> locacoes;
+	private INetClient iNet = new ControllerNetClient();
 	private Idao id=new ControllerDao();
 	private static String localizacao = new String("locacoes.obj");
 
@@ -27,6 +29,11 @@ public class ColecaoLocacao implements Serializable{
 	public boolean carregarArqDeLocacoes()throws Exception{
 		
 		try{
+		//	this.locacoes = (ArrayList<Locacao>) iNet.receberObject(localizacao);
+		//	if(this.locacoes!=null){
+		//		return true;
+		//	}
+			
 			if(id.verificarArquivo(localizacao)){
 				this.locacoes = (ArrayList<Locacao>) id.carregarArq(localizacao);
 			//	System.out.println(this.pessoas.toString());
@@ -45,6 +52,7 @@ public class ColecaoLocacao implements Serializable{
 		try{
 			if (!locacoes.contains(locacao)){
 				locacoes.add(locacao);
+			//	iNet.enviarObject(this.locacoes, localizacao);
 				id.salvarEmArq(this.locacoes, localizacao);
 				return true;
 			}
@@ -61,6 +69,7 @@ public class ColecaoLocacao implements Serializable{
 			for (Locacao locacao : locacoes) {
 				if (locacao.getId()==id){
 					locacoes.remove(id);
+			//		this.iNet.enviarObject(this.locacoes, localizacao);
 					this.id.salvarEmArq(this.locacoes, localizacao);
 					return true;
 				}
