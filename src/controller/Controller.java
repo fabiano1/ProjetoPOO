@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Implementa os métodos da interface IController;
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class Controller implements Icontroller, Serializable{
 	/**
 	 * 

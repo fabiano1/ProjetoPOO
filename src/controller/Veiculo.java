@@ -2,6 +2,14 @@ package controller;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * Classe Veiculo, contém informações relativas ao veiculo.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public abstract class Veiculo implements Serializable {
 
 	private static final long serialVersionUID = 1L;

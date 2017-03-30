@@ -2,6 +2,14 @@ package controller;
 
 import java.io.Serializable;
 
+/**
+ * Classe motocicleta, contém informações relativas à motocicleta, 
+ * herdando os atributos da classe Veiculo.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class Motocicleta extends Veiculo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

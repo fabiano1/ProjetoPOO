@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * Classe Locacao, contém informações relativas à locação feita. 
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class Locacao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

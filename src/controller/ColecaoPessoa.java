@@ -11,6 +11,14 @@ import dao.ControllerDao;
 import dao.Idao;
 import net.*;
 
+/**
+ * Classe ColecaoPessoa, contém os métodos para criar e 
+ * manipular uma coleção de classes do tipo Pessoa.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class ColecaoPessoa implements Serializable{
 	/**
 	 * 

@@ -7,6 +7,14 @@ import dao.ControllerDao;
 import dao.Idao;
 import net.*;
 
+/**
+ * Classe ColecaoVeiculo, contém os métodos para criar e 
+ * manipular uma coleção de classes do tipo Veiculo.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class ColecaoVeiculo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

@@ -3,6 +3,15 @@ package controller;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Classe Cliente, contém informações relativas ao cliente, 
+ * herdando os atributos da classe Pessoa.
+ * * 
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class Cliente extends Pessoa implements Serializable{
 	/**
 	 * 

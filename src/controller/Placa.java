@@ -2,6 +2,14 @@ package controller;
 
 import java.io.Serializable;
 
+/**
+ * Classe Placa, contém informações relativas à placa de algum veiculo.
+ * 
+ * @author SHOW13
+ *
+ */
+
+
 public class Placa implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

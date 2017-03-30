@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
+
+/**
+ * Classe Pessoa, contém informações relativas à uma pessoa.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public abstract class Pessoa implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

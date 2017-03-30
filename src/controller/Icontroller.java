@@ -2,6 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 
+/**
+ * Interface que contém os métodos para uso das coleções desse pacote, 
+ * devendo-se ser implementado os métodos na classe que implementar 
+ * essa interface.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public interface Icontroller{
 
 	public boolean init() throws Exception;

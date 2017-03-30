@@ -3,6 +3,15 @@ package controller;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Classe Funcionario, contém informações relativas ao funcionário, 
+ * herdando os atributos da classe Pessoa.
+ * 
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class Funcionario extends Pessoa implements Serializable{
 	/**
 	 * 

@@ -9,6 +9,14 @@ import dao.ControllerDao;
 import dao.Idao;
 import net.*;
 
+/**
+ * Classe ColecaoLocacao, contém os métodos para criar e 
+ * manipular uma coleção de classes do tipo Locacao.
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class ColecaoLocacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
