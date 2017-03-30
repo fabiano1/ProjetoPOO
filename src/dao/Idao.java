@@ -7,9 +7,9 @@ import controller.Pessoa;
 
 public interface Idao {
 	
-	public boolean salvarEmArq(Object obj, String str);
-	public Object carregarArq(String str);
-	public boolean verificarArquivo(String str);
+	public boolean salvarEmArq(Object obj, String str) throws Exception;
+	public Object carregarArq(String str)throws Exception;
+	public boolean verificarArquivo(String str)throws Exception;
 	
 
 }

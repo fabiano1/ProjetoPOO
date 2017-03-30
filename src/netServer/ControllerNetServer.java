@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.ServerSocket;
@@ -18,6 +19,10 @@ import dao.*;
 
 public class ControllerNetServer implements INetServer, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Idao id=new ControllerDao();
 	
 	@Override
@@ -26,6 +31,7 @@ public class ControllerNetServer implements INetServer, Serializable{
 			ServerSocket sock = new ServerSocket(6013);
 			String op = new String();
 			
+			System.out.println("Servidor inicializado\n");
 			while (true) {
 				Socket client = sock.accept();
 				// temos uma conexão
@@ -38,21 +44,28 @@ public class ControllerNetServer implements INetServer, Serializable{
 				 *
 				 **/
 				InputStream in = client.getInputStream();
-				BufferedReader bin = new BufferedReader(new InputStreamReader(in));
-					
-				op = bin.readLine();
-				System.out.println(op);
-					
-				if((!op.equals("0"))&&(!op.equals("1"))&&(!op.equals("2"))){
+			//	BufferedReader bin = new BufferedReader(new InputStreamReader(in));
+				
+				int i = in.read();
+				System.out.println(i);
+				
+			//	op = bin.readLine();
+			//	System.out.println(op);
+				
+				if((i==0)||(i!=1)&&(i!=2)){
 					client.close();
-				}else{
+				}
+			//	if((!op.equals("0"))&&(!op.equals("1"))&&(!op.equals("2"))){
+			//		client.close();
+			//	}
+				else{
 				
 					//				client.wait();
-					switch(op){
-						case "1":
+					switch(i){
+						case 1:
 							receberObeject(client);
 							break;
-						case "2":
+						case 2:
 							enviarObject(client);
 							break;
 						default:
@@ -60,8 +73,8 @@ public class ControllerNetServer implements INetServer, Serializable{
 							break;
 					}
 				}
-			
 				client.close();
+				System.out.println("conexao fechada");
 			}
 		}catch(Exception e){
 			System.err.println("erro no servidor");
@@ -83,42 +96,58 @@ public class ControllerNetServer implements INetServer, Serializable{
 			 *	3 - arquivo locacoes.obj
 			 **/
 			InputStream in = client.getInputStream();
-			BufferedReader bin = new BufferedReader(new InputStreamReader(in));
+			int i = in.read();
+			System.out.println(i);
 			
-			op = bin.readLine();
-			System.out.println(op);
-				
-			if((op.equals("0"))&&(!op.equals("1"))&&(!op.equals("2"))&&(!op.equals("3"))){
+		//	BufferedReader bin = new BufferedReader(new InputStreamReader(in));
+			
+		//	op = bin.readLine();
+		//	System.out.println(op);
+			System.out.println("erro aqui");
+			
+			if((i==0)||(i!=1)&&(i!=2)&&(i!=3)){
 				client.close();
 				return false;
-			}else{
+			}
 			
-				ObjectInputStream inStream = new ObjectInputStream(client.getInputStream());
-				Object obj = (Object) inStream.readObject();
+		//	if((op.equals("0"))||(!op.equals("1"))&&(!op.equals("2"))&&(!op.equals("3"))){
+		//		client.close();
+		//		return false;
+		//	}
+			else{
+			
+				/*recebimento do objeto do cliente*/
+/*erro*/		ObjectInputStream inStream = new ObjectInputStream(client.getInputStream());
+				Object obj =  inStream.readObject();
+				System.out.println("erro aqui");
 				if(obj!=null){
-					switch(op){
-						case "1":
+					switch(i){
+						case 1:
 								id.salvarEmArq(obj,"pessoas.obj");
+								System.out.println("arquivo salvo com sucesso no Server");
 							break;
-						case "2":
+						case 2:
 								id.salvarEmArq(obj,"veiculos.obj");
+								System.out.println("arquivo salvo com sucesso no Server");
 							break;
-						case "3":
+						case 3:
 								id.salvarEmArq(obj,"locacoes.obj");
+								System.out.println("arquivo salvo com sucesso no Server");
 							break;
 						default:
-							client.close();
+					//		client.close();
 							return false;
 					}
-					client.close();
+				//	client.close();
 					return true;
 				}else{
-					client.close();
+				//	client.close();
 					return false;
 				}
 			}
 		}catch(Exception e){
-			System.err.println("Erro receber objeto do servidor");
+			e.printStackTrace();
+			System.err.println("Erro receber objeto do cliente");
 		}
 		
 		return false;
@@ -141,45 +170,88 @@ public class ControllerNetServer implements INetServer, Serializable{
 		
 			
 			InputStream in = client.getInputStream();
-			BufferedReader bin = new BufferedReader(new InputStreamReader(in));
+			
+			int i = in.read();
+			System.out.println(i);
+			
+		//	BufferedReader bin = new BufferedReader(new InputStreamReader(in));
 	
 			
-			op = bin.readLine();
-			System.out.println(op);
-					
-			if((op.equals("0"))||(!op.equals("1"))&&(!op.equals("2"))&&(!op.equals("3"))){
+		//	op = bin.readLine();
+		//	System.out.println(op);
+			
+			if((i==0)||(i!=1)&&(i==2)&&(i==3)){
 				client.close();
 				return false;
-			}else{
+			}
+			
+		//	if((op.equals("0"))||(!op.equals("1"))&&(!op.equals("2"))&&(!op.equals("3"))){
+		//		client.close();
+		//		return false;
+		//	}
+			else{
 				ObjectOutputStream outStream = new ObjectOutputStream(client.getOutputStream());
 				Object obj = new Object();
-				switch(op){
-					case "1":
+				switch(i){
+					case 1:
 						obj = id.carregarArq("pessoas.obj");
+						System.out.println(obj);
 						outStream.writeObject(obj);
+						outStream.flush();
 						break;
-					case "2":
+					case 2:
 						obj = id.carregarArq("veiculos.obj");
 						outStream.writeObject(obj);
+						outStream.flush();
 						break;
-					case "3":
+					case 3:
 						obj = id.carregarArq("locacoes.obj");
 						outStream.writeObject(obj);
+						outStream.flush();
 						break;
 					default:
-						outStream.flush();
-						client.close();
+				//		outStream.flush();
+				//		client.close();
 						return false;
 				}
-				outStream.flush();
-				client.close();
+			//	client.close();
 				return true;
 			}
 		}catch(Exception e){
-			System.err.println("erro ao enviar objeto para servidor");
+			System.err.println("erro ao enviar objeto para cliente");
 		}
 		return false;
 	
+	}
+	
+	/*Funções disponíveis caso continue o erro*/
+	
+	public boolean enviarArqLocacoes(Socket client) throws Exception{
+		
+		OutputStream out = client.getOutputStream();
+		ObjectOutputStream objOut = new ObjectOutputStream(out);
+		
+		Object obj = new Object();
+		obj = id.carregarArq("locacoes.obj");
+		
+		objOut.writeObject(obj);
+		objOut.writeObject(obj);
+		return true;
+	}
+	
+	public boolean receberArqLocacoes(Socket client) throws Exception{
+		
+		
+		Object obj = new Object();
+		
+		InputStream in = client.getInputStream();
+		ObjectInputStream objIn = new ObjectInputStream(in);
+		
+		obj = objIn.readObject();
+		
+		id.salvarEmArq(obj, "locacoes.obj");
+		
+		return true;
 	}
 	
 }
