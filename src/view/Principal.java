@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -246,7 +247,7 @@ public class Principal implements Serializable{
 
 		System.out.print("digite a data de Nascimento: ");
 		//str = lerData(sc);
-		p.setDataNascimento(getData());
+		p.setDataNascimento(getData2());
 		//	p.setDataNascimento(str);
 
 		System.out.print("digite o login: ");
@@ -366,18 +367,18 @@ public class Principal implements Serializable{
 		Scanner sc = new Scanner(System.in);
 		Placa placa = new Placa();
 		//String data = new String();
-		LocalDate dataDev,dataRet;
+		LocalDateTime dataDev,dataRet;
 		Locacao locacao = new Locacao();
 		double d = 0;
 
-		System.out.print("Digite a data de devolucao: ");
+		System.out.println("Digite a data de devolucao: ");
 		//data = lerData(sc);
-		dataDev=getData();
-		locacao.setDataDevolucao(dataDev);
-		
-	   System.out.print("Digite a data de Retidada: ");
-	   dataRet=getData();
-	   locacao.setDataRetirada(dataRet);
+		//dataDev=getData();
+		locacao.setDataDevolucao(getData());
+
+		System.out.println("Digite a data de Retidada: ");
+		dataRet=getData();
+		locacao.setDataRetirada(dataRet);
 		//	locacao.setDataRetirada(data);
 
 		System.out.print("digite o cpf do cliente: ");
@@ -399,7 +400,7 @@ public class Principal implements Serializable{
 			if(!ic.pesquisarVeiculo(str).isDisponibilidade()){
 				System.out.println(ic.pesquisarVeiculo(str).toString()+ "Não está Disponível!\n");
 				return true;
-				
+
 			}else{
 				locacao.setVeiculo(ic.pesquisarVeiculo(str));
 				ic.pesquisarVeiculo(str).setDisponibilidade(false);
@@ -473,13 +474,13 @@ public class Principal implements Serializable{
 		return leitor;
 	}
 
-	
+
 	/*  public static String lerData(Scanner in){
 		System.out.print("Digite no formato (dd/mm/aaaa) ");
 		String r = "";
 		do{
 			r = in.nextLine();
-			
+
 			if(r.length()!=10){
 				System.out.print("Formato inválido digite: dd/mm/aaaa");
 			}
@@ -487,9 +488,9 @@ public class Principal implements Serializable{
 		return r;
 
 	}*/
-	 static LocalDate getData(){
+	public static LocalDateTime getData(){
 
-		DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		/*	DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Scanner sc = null;
 		LocalDate sData = null;
 		try {
@@ -497,11 +498,85 @@ public class Principal implements Serializable{
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+		 */
+		int ano=lerAno();
+		int mes=lerMes();
+		int dia=lerDia();
+		int hora=lerHora();
+				
+
+
+		LocalDateTime sData=LocalDateTime.of(ano,mes,dia,hora,0);;
+
+
 		return sData;
 	}
+		public static LocalDate getData2(){
 
-	 
+				DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			Scanner sc = null;
+			LocalDate sData = null;
+			try {
+				sData = LocalDate.parse( lerData() , fmt2 );
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+
+			return sData;
+	}
+	
+	
+	public static int lerMes(){
+		int mes = 0;
+		System.out.println("Digite o Mes");
+
+		do {
+			mes=lerInteiro();
+			
+		} while ((mes<0)||(mes>12));
+
+		return mes;
+	}
+	public static int lerAno(){
+		int ano = 0;
+		System.out.print("Digite o Ano");
+		do {
+			
+			ano=lerInteiro();
+
+		} while ((ano<2016)||(ano>2100));
+
+		return ano;
+
+	}
+
+	public static int lerDia(){
+		int dia = 0;
+		System.out.print("Digite o Dia");
+
+		do {
+			dia=lerInteiro();
+
+		} while ((dia<1)||(dia>31));
+
+		return dia;
+	}
+
+	public static int lerHora(){
+		int hora = 0;
+		System.out.print("Digite a Hora");
+
+		do {
+			hora=lerInteiro();
+
+		} while ((hora<0)||(hora>23));
+
+		return hora;
+	}
+
 
 
 	/**
