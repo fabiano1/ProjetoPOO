@@ -165,8 +165,26 @@ public class ColecaoPessoa implements Serializable{
 		return null;
 
 	} 
-	
 */
+/*	public Pessoa pesquisarClientePeloCNH(String cnh)throws Exception {
+		try{
+
+			for (Pessoa p : this.pessoas){
+
+				if(p instanceof Cliente){
+					Cliente client = (Cliente) p;
+					if( client.getCnh().equals(cnh)){
+						return p;
+					}
+				}
+			}
+		}catch(Exception e){
+			System.err.println("Erro ao pesquisar Cliente pela cnh");
+		}
+		return null;
+
+	} */
+	
 	public boolean removerPessoa(String cpf) throws Exception{
 
 		for (Pessoa pessoa : pessoas) {

@@ -150,6 +150,21 @@ public class ColecaoVeiculo implements Serializable{
 
 	}
 	
+/*	public Veiculo pesquisarVeiculo(String placa)throws Exception{
+		try{
+			for(Veiculo v : this.veiculos){
+				if(v.getPlaca().getNumerosEletras().equalsIgnoreCase(placa)){
+					return v;
+				}
+			}
+			return null;
+		}catch(Exception e){
+			System.err.println("erro ao pesquisar veículo");
+		}
+		return null;
+	}*/
+	
+	
 	public boolean removerVeiculo(String placa) throws Exception{
 		try{
 		//	Idao id;
