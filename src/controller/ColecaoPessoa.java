@@ -55,21 +55,29 @@ public class ColecaoPessoa implements Serializable{
 	public boolean carregarArqDePessoas()throws Exception{
 		
 		try{
-		/*	this.pessoas = (ArrayList<Pessoa>) iNet.receberObject(localizacao);
-		 * 	System.out.println(this.pessoas.toString());
-			if(this.pessoas!=null){
+			Object obj = (Object) iNet.receberObject(localizacao);
+			if(obj!=null){
+				this.pessoas = (ArrayList<Pessoa>) obj;
+				System.out.println(this.pessoas.toString());
 				return true;
-			}*/
-			if(id.verificarArquivo(localizacao)){
-				this.pessoas = (ArrayList<Pessoa>) id.carregarArq(localizacao);
-			//	System.out.println(this.pessoas.toString());
-				if(this.pessoas!=null){
-					return true;
-				}
-
+			}else{
+				return false;
 			}
+
+		/*	Object obj = (Object) id.carregarArq(localizacao);
+			if(obj==null){
+		//		System.out.println("objeto nulo");
+				return false;
+			}else{
+				this.pessoas = (ArrayList<Pessoa>) obj;
+			//	System.out.println(this.pessoas.toString());
+					return true;
+			}*/
+
+		//	}
 		}catch(Exception e){
-			System.err.println("erro ao carregar arquivo");
+		//	e.printStackTrace();
+		//	System.err.println("erro ao carregar arquivo - Colecao Pessoa");
 		}
 		return false;
 	}
@@ -78,8 +86,8 @@ public class ColecaoPessoa implements Serializable{
 		if(!pessoas.contains(p)){
 			pessoas.add(p);
 			try {
-			//	iNet.enviarObject(this.pessoas, localizacao);
-				id.salvarEmArq(this.pessoas,localizacao);
+				iNet.enviarObject(this.pessoas, localizacao);
+			//	id.salvarEmArq(this.pessoas,localizacao);
 				return true;
 
 			} catch (Exception e) {
@@ -167,8 +175,8 @@ public class ColecaoPessoa implements Serializable{
 					pessoas.remove(pessoa);
 
 					try {
-				//		iNet.enviarObject(this.pessoas, localizacao);
-						id.salvarEmArq(this.pessoas,localizacao);
+						iNet.enviarObject(this.pessoas, localizacao);
+				//		id.salvarEmArq(this.pessoas,localizacao);
 						return true;
 					} catch (Exception e) {
 						// TODO: handle exception

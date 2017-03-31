@@ -2,14 +2,17 @@ package net;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.sun.jndi.ldap.sasl.SaslInputStream;
@@ -17,8 +20,23 @@ import com.sun.org.apache.xml.internal.security.utils.SignerOutputStream;
 
 import  controller.*;
 
+/**
+ * Contém os métodos herdados da interface INetClient e 
+ * suas implementações:
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class ControllerNetClient implements INetClient, Serializable {
 	
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public boolean enviarObject(Object obj, String fileName) throws Exception{
 		
@@ -35,10 +53,15 @@ public class ControllerNetClient implements INetClient, Serializable {
 			 *
 			 **/
 			/*Primeira etapa: envio de opção escolhida para o servidor*/
-			PrintWriter pout = new PrintWriter(sock.getOutputStream(), true);
+			OutputStream out = sock.getOutputStream();
+			out.write(1);
+			out.flush();
+			
+		//	PrintWriter pout = new PrintWriter(sock.getOutputStream(), true);
 			String op = new String("1");
-			pout.println(op);
-			pout.flush();
+			
+		//	pout.println(op);
+		//	pout.flush();
 			
 			/**	
 			 * 	Menu de Dados da segunda opcao recebida para carrgerarquivos:
@@ -52,22 +75,34 @@ public class ControllerNetClient implements INetClient, Serializable {
 			
 		/*Segunda etapa: resposta a segunda opcao do tipo de arquivo a enviar*/
 			if(fileName.equals("pessoas.obj")){
+				out.write(1);
+				out.flush();
 				op = "1";
 			}
 			if(fileName.equals("veiculos.obj")){
+				out.write(2);
+				out.flush();
 				op = "2";
 			}
 			if(fileName.equals("locacoes.obj")){
+				out.write(1);
+				out.flush();
 				op = "3";
-			}else{
-				sock.close();
-				return true;
 			}
-			pout.println(op);
-			pout.flush();
+			if((!fileName.equals("pessoas.obj"))&&(!fileName.equals("veiculos.obj"))
+				&&(!fileName.equals("locacoes.obj"))){
+				out.write(0);
+				out.flush();
+				System.out.println("escreveu 0 no recebimento");
+			}
+			System.out.println(op+" opcao escolhida");
+		//	pout.println(op);
+		//	pout.flush();
 		//	SignerOutputStream sc1 = null;
 		//	sc1.write(1);
 			
+			
+			/*Terceira Etapa: envio do objeto*/
 			ObjectOutputStream outStream = new ObjectOutputStream(sock.getOutputStream());
 			outStream.writeObject(obj);
 			outStream.flush();
@@ -75,7 +110,7 @@ public class ControllerNetClient implements INetClient, Serializable {
 			sock.close();
 			
 		}catch(Exception e){
-			
+			System.err.println("erro ao enviar objeto para servidor");
 		}
 		return false;
 	}
@@ -95,10 +130,14 @@ public class ControllerNetClient implements INetClient, Serializable {
 			 *
 			 **/
 			/*Primeira etapa: envio de opção escolhida para o servidor*/
-			PrintWriter pout = new PrintWriter(sock.getOutputStream(), true);
+			OutputStream out = sock.getOutputStream(); 
+			out.write(2);
+			out.flush();
+			
+		//	PrintWriter pout = new PrintWriter(sock.getOutputStream(), true);
 			String op = new String("2");
-			pout.println(op);
-			pout.flush();
+		//	pout.println(op);
+		//	pout.flush();
 			
 			/**	
 			 * 	Menu de Dados da segunda opcao recebida para carrgerarquivos:
@@ -111,19 +150,32 @@ public class ControllerNetClient implements INetClient, Serializable {
 			op = "0";
 			
 			if(arquivo.equals("pessoas.obj")){
+				out.write(1);
+				out.flush();
 				op = "1";
 			}
 			if(arquivo.equals("veiculos.obj")){
+				out.write(2);
+				out.flush();
 				op = "2";
 			}
 			if(arquivo.equals("locacoes.obj")){
+				out.write(3);
+				out.flush();
 				op = "3";
 			}
-			pout.println(op);
-			pout.flush();
+			if((!arquivo.equals("pessoas.obj"))&&(!arquivo.equals("veiculos.obj"))&&(!arquivo.equals("locacoes.obj"))){
+				out.write(0);
+				out.flush();
+				System.out.println("escreveu 0 no recebimento");
+			}
+		//	pout.println(op);
+		//	pout.flush();
 			
+			
+			/*Terceira etapa: recebimento do objeto*/
 			ObjectInputStream inStream = new ObjectInputStream(sock.getInputStream());
-			obj = (Object) inStream.readObject();
+			obj = inStream.readObject();
 			
 			sock.close();
 			return obj;
@@ -134,5 +186,27 @@ public class ControllerNetClient implements INetClient, Serializable {
 		return obj;
 	}
 
+	
+	/*Métodos adionais caso o erro persista*/
+	
+	public boolean enviarArqLocacoes(Object obj, String localizacao) throws Exception{
+		
+		Socket sock = new Socket("127.0.0.1",6013);
+		
+		OutputStream out = sock.getOutputStream();
+		ObjectOutputStream objOut = new ObjectOutputStream(sock.getOutputStream());
+		return true;
+	}
+	
+	public boolean receberArqLocacoes(String localizacao) throws Exception{
+		
+		Socket sock = new Socket("127.0.0.1",6013);
+		
+		Object obj = new Object();
+		
+		InputStream in = sock.getInputStream();
+		ObjectInputStream objIn = new ObjectInputStream(in);
+		return true;
+	}
 	
 }

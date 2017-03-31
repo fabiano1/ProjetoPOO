@@ -42,19 +42,25 @@ public class ColecaoVeiculo implements Serializable{
 	public boolean carregarArqDeVeiculos()throws Exception{
 		
 		try{
-		//	this.veiculos = (ArrayList<Veiculo>) iNet.receberObject(localizacao);
-		//	if(this.veiculos!=null){
-		//		return true;
-		//	}
-			if(id.verificarArquivo(localizacao)){
+			Object obj = (Object) iNet.receberObject(localizacao);
+			if(obj!=null){
+				this.veiculos = (ArrayList<Veiculo>) obj;
+				System.out.println(this.veiculos.toString());
+				return true;
+			}else{
+				return false;
+			}
+			
+			
+			/*if(id.verificarArquivo(localizacao)){
 				this.veiculos = (ArrayList<Veiculo>) id.carregarArq(localizacao);
 			//	System.out.println(this.pessoas.toString());
 				if(this.veiculos!=null){
 					return true;
 				}
-			}
+			}*/
 		}catch(Exception e){
-			System.err.println("erro ao carregar arquivo");
+	//		System.err.println("erro ao carregar arquivo");
 		}
 		return false;
 	}
@@ -64,8 +70,8 @@ public class ColecaoVeiculo implements Serializable{
 		try{
 			if(!veiculos.contains(v)){
 				veiculos.add(v);
-				id.salvarEmArq(this.veiculos, localizacao);
-			//	iNet.enviarObject(this.veiculos, localizacao);
+			//	id.salvarEmArq(this.veiculos, localizacao);
+				iNet.enviarObject(this.veiculos, localizacao);
 				return true;
 			}
 		}catch(Exception e){
@@ -142,7 +148,8 @@ public class ColecaoVeiculo implements Serializable{
 		}
 		return null;
 
-	} 
+	}
+	
 	public boolean removerVeiculo(String placa) throws Exception{
 		try{
 		//	Idao id;
@@ -151,8 +158,8 @@ public class ColecaoVeiculo implements Serializable{
 			for (Veiculo v : this.veiculos) {
 				if(v.getPlaca().getNumerosEletras().equalsIgnoreCase(placa)){
 					this.veiculos.remove(v);
-				//	iNet.enviarObject(this.pessoas, localizacao);
-					id.salvarEmArq(this.veiculos,localizacao);
+					iNet.enviarObject(this.veiculos, localizacao);
+				//	id.salvarEmArq(this.veiculos,localizacao);
 					return true;
 				}
 			}

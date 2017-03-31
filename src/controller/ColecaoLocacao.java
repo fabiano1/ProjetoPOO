@@ -37,20 +37,24 @@ public class ColecaoLocacao implements Serializable{
 	public boolean carregarArqDeLocacoes()throws Exception{
 		
 		try{
-		//	this.locacoes = (ArrayList<Locacao>) iNet.receberObject(localizacao);
-		//	if(this.locacoes!=null){
-		//		return true;
-		//	}
+			Object obj = (Object) iNet.receberObject(localizacao);
+			if(obj!=null){
+				this.locacoes = (ArrayList<Locacao>) obj;
+				System.out.println(this.locacoes.toString());
+				return true;
+			}else{
+				return false;
+			}
 			
-			if(id.verificarArquivo(localizacao)){
+			/*if(id.verificarArquivo(localizacao)){
 				this.locacoes = (ArrayList<Locacao>) id.carregarArq(localizacao);
 			//	System.out.println(this.pessoas.toString());
 				if(this.locacoes!=null){
 					return true;
 				}	
-			}
+			}*/
 		}catch(Exception e){
-			System.err.println("erro ao carregar arquivo");
+	//		System.err.println("erro ao carregar arquivo");
 		}
 		return false;
 	}
@@ -60,8 +64,8 @@ public class ColecaoLocacao implements Serializable{
 		try{
 			if (!locacoes.contains(locacao)){
 				locacoes.add(locacao);
-			//	iNet.enviarObject(this.locacoes, localizacao);
-				id.salvarEmArq(this.locacoes, localizacao);
+				iNet.enviarObject(this.locacoes, localizacao);
+			//	id.salvarEmArq(this.locacoes, localizacao);
 				return true;
 			}
 		}catch(Exception e){
@@ -77,8 +81,8 @@ public class ColecaoLocacao implements Serializable{
 			for (Locacao locacao : locacoes) {
 				if (locacao.getId()==id){
 					locacoes.remove(id);
-			//		this.iNet.enviarObject(this.locacoes, localizacao);
-					this.id.salvarEmArq(this.locacoes, localizacao);
+					this.iNet.enviarObject(this.locacoes, localizacao);
+				//	this.id.salvarEmArq(this.locacoes, localizacao);
 					return true;
 				}
 			}

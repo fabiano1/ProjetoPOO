@@ -11,6 +11,15 @@ import java.util.Scanner;
 import controller.*;
 
 
+/**
+ * Cotenterá a classe Principal, onde possuirá o método main. 
+ * Metodos adicionais forão utilizados para interação com o usuário.
+ * 
+ * 
+ * @author SHOW13
+ *
+ */
+
 public class Principal implements Serializable{
 
 	private static Icontroller ic= new Controller();
@@ -468,6 +477,20 @@ public class Principal implements Serializable{
 		if(sdf.parse(leitor)==null)
 		{
 			System.out.println("voce deve digitar a data no formato solicitado(dd/MM/yyyy): ");
+			return lerData();
+		}
+		return leitor;
+	}
+	
+	public static String lerDataEHora()throws ParseException{
+		Scanner sc = new Scanner(System.in);
+		String leitor, res;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+		leitor = sc.nextLine();
+		if(sdf.parse(leitor)==null)
+		{
+			System.out.println("voce deve digitar a data no formato solicitado(dd/MM/yyyy HH:mm:ss): ");
 			return lerData();
 		}
 		return leitor;

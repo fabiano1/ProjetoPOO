@@ -1,8 +1,8 @@
 package controller;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
+
 
 /**
  * Classe Locacao, contém informações relativas à locação feita. 
@@ -10,6 +10,7 @@ import java.time.Period;
  * @author SHOW13
  *
  */
+
 
 public class Locacao implements Serializable {
 	
