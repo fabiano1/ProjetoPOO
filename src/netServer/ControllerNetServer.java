@@ -110,7 +110,6 @@ public class ControllerNetServer implements INetServer, Serializable{
 			
 		//	op = bin.readLine();
 		//	System.out.println(op);
-			System.out.println("erro aqui");
 			
 			if((i==0)||(i!=1)&&(i!=2)&&(i!=3)){
 				client.close();
@@ -126,20 +125,20 @@ public class ControllerNetServer implements INetServer, Serializable{
 				/*recebimento do objeto do cliente*/
 /*erro*/		ObjectInputStream inStream = new ObjectInputStream(client.getInputStream());
 				Object obj =  inStream.readObject();
-				System.out.println("erro aqui");
+				
 				if(obj!=null){
 					switch(i){
 						case 1:
 								id.salvarEmArq(obj,"pessoas.obj");
-								System.out.println("arquivo salvo com sucesso no Server");
+								System.out.println("arquivo pessoas.obj salvo com sucesso no Server");
 							break;
 						case 2:
 								id.salvarEmArq(obj,"veiculos.obj");
-								System.out.println("arquivo salvo com sucesso no Server");
+								System.out.println("arquivo veiculos.obj salvo com sucesso no Server");
 							break;
 						case 3:
 								id.salvarEmArq(obj,"locacoes.obj");
-								System.out.println("arquivo salvo com sucesso no Server");
+								System.out.println("arquivo locacoes.obj salvo com sucesso no Server");
 							break;
 						default:
 					//		client.close();
@@ -202,17 +201,19 @@ public class ControllerNetServer implements INetServer, Serializable{
 				switch(i){
 					case 1:
 						obj = id.carregarArq("pessoas.obj");
-						System.out.println(obj);
+						System.out.println("pessoas.obj");
 						outStream.writeObject(obj);
 						outStream.flush();
 						break;
 					case 2:
 						obj = id.carregarArq("veiculos.obj");
+						System.out.println("veiculos.obj");
 						outStream.writeObject(obj);
 						outStream.flush();
 						break;
 					case 3:
 						obj = id.carregarArq("locacoes.obj");
+						System.out.println("locacoes.obj");
 						outStream.writeObject(obj);
 						outStream.flush();
 						break;
@@ -233,7 +234,7 @@ public class ControllerNetServer implements INetServer, Serializable{
 	
 	/*Funções disponíveis caso continue o erro*/
 	
-	public boolean enviarArqLocacoes(Socket client) throws Exception{
+/*	public boolean enviarArqLocacoes(Socket client) throws Exception{
 		
 		OutputStream out = client.getOutputStream();
 		ObjectOutputStream objOut = new ObjectOutputStream(out);
@@ -244,9 +245,9 @@ public class ControllerNetServer implements INetServer, Serializable{
 		objOut.writeObject(obj);
 		objOut.writeObject(obj);
 		return true;
-	}
+	}*/
 	
-	public boolean receberArqLocacoes(Socket client) throws Exception{
+/*	public boolean receberArqLocacoes(Socket client) throws Exception{
 		
 		
 		Object obj = new Object();
@@ -259,6 +260,6 @@ public class ControllerNetServer implements INetServer, Serializable{
 		id.salvarEmArq(obj, "locacoes.obj");
 		
 		return true;
-	}
+	}*/
 	
 }

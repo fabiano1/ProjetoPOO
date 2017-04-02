@@ -85,7 +85,7 @@ public class ControllerNetClient implements INetClient, Serializable {
 				op = "2";
 			}
 			if(fileName.equals("locacoes.obj")){
-				out.write(1);
+				out.write(3);
 				out.flush();
 				op = "3";
 			}
