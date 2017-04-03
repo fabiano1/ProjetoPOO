@@ -254,9 +254,9 @@ public class Principal implements Serializable{
 		p.setNome(str);
 
 		System.out.print("digite a data de Nascimento: ");
-		//str = lerData(sc);
+	//	str = lerData();
 		p.setDataNascimento(getData());
-		//	p.setDataNascimento(str);
+	//	p.setDataNascimento(str);
 
 		System.out.print("digite o login: ");
 		str = sc.nextLine();
@@ -374,13 +374,13 @@ public class Principal implements Serializable{
 		String str;
 		Scanner sc = new Scanner(System.in);
 		Placa placa = new Placa();
-		//String data = new String();
+	//	String data = new String();
 		LocalDate dataDev,dataRet;
 		Locacao locacao = new Locacao();
 		double d = 0;
 
 		System.out.print("Digite a data de devolucao: ");
-		//data = lerData(sc);
+	//	data = lerData();
 		dataDev=getData();
 		locacao.setDataDevolucao(dataDev);
 		
@@ -472,10 +472,11 @@ public class Principal implements Serializable{
 		Scanner sc = new Scanner(System.in);
 		String leitor, res;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-		leitor = sc.nextLine();
-		if(sdf.parse(leitor)==null)
-		{
+		
+		try{
+			leitor = sc.nextLine();
+			if(sdf.parse(leitor)==null);
+		}catch(Exception e){
 			System.out.println("voce deve digitar a data no formato solicitado(dd/MM/yyyy): ");
 			return lerData();
 		}
@@ -488,8 +489,9 @@ public class Principal implements Serializable{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		leitor = sc.nextLine();
-		if(sdf.parse(leitor)==null)
-		{
+		try{
+			if(sdf.parse(leitor)==null);
+		}catch(Exception e){
 			System.out.println("voce deve digitar a data no formato solicitado(dd/MM/yyyy HH:mm:ss): ");
 			return lerData();
 		}
@@ -510,7 +512,7 @@ public class Principal implements Serializable{
 		return r;
 
 	}*/
-	 static LocalDate getData(){
+	 static LocalDate getData()throws Exception{
 
 		DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Scanner sc = null;
